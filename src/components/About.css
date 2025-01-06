@@ -1,0 +1,184 @@
+/* About Section */
+.about {
+  padding: 80px 20px;
+  text-align: center;
+  color: #333;
+  position: relative;
+ 
+}
+
+.about::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.about h2 {
+  font-size: 42px;
+  margin-bottom: 30px;
+  color: #333;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-color: #ffd900;
+  letter-spacing: 2px;
+  opacity: 0;
+  animation: fadeIn 1s forwards 0.5s; /* Fade in animation */
+  position: relative;
+  display: inline-block;
+  padding: 10px 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* Bubble shadow */
+  font-size: 40px; /* Slightly smaller font for the title */
+  text-align: center;
+  animation: bubbleText 2s infinite; /* Add bouncing effect */
+}
+
+/* About Paragraph */
+.about p {
+  font-size: 18px;
+  line-height: 1.8;
+  max-width: 800px;
+  margin: 0 auto;
+  color: #555;
+  font-weight: 300;
+  background-color: rgb(255, 255, 255);
+  position: relative;
+  padding: 20px 30px; /* Add some padding inside the bubble */
+  border-radius: 30px; /* Round the edges to form a bubble */
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* Soft shadow around the bubble */
+  text-align: center; /* Center the text inside the bubble */
+  animation: bubbleText 2s infinite; /* Animation for bouncing effect */
+}
+
+/* Highlight Text */
+.about .highlight {
+  color: #ffd900; /* Highlight color for emphasis */
+  font-weight: bold;
+}
+
+/* About Image Styling */
+.about-img {
+  width: 270px; /* Slightly larger to accommodate the circle around the image */
+  height: 270px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
+  padding: 6px; /* Creates the gap between image and circle */
+  margin-bottom: 20px; /* Adjusted for better spacing */
+  position: relative;
+  animation: pulse 2s infinite; /* Pulsating animation */
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2); /* Add some soft shadow to create depth */
+}
+
+.about-img img {
+  width: 250px; /* Increased image size */
+  height: 250px; /* Ensure height matches width for a larger circle */
+  border-radius: 50%; /* Full circle */
+  object-fit: cover; /* Ensures the image covers the area without stretching */
+  transition: transform 0.3s ease-in-out; /* Smooth transition effect */
+}
+
+/* Image Hover Effect */
+.about-img img:hover {
+  transform: scale(1.1); /* Slight zoom on hover */
+}
+
+/* Pulsating Animation */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.7);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+  }
+}
+
+/* Bubble Text Animation */
+@keyframes bubbleText {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Layout */
+.about-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap; /* Ensures the layout stacks on smaller screens */
+}
+
+.about-text {
+  flex: 1;
+  text-align: left; /* Align text to the left */
+  max-width: 500px;
+}
+
+.about-img {
+  flex: 0 1 auto;
+  text-align: center;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .about h2 {
+    font-size: 36px;
+    text-align: center; /* Center the text on mobile */
+    margin-bottom: 20px; /* Adjust margin */
+  }
+
+  .about p {
+    font-size: 16px;
+    max-width: 90%;
+  }
+
+  /* Stack the image and text for smaller screens */
+  .about-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about-img {
+    width: 220px; /* Adjust size for mobile */
+    height: 220px;
+    padding: 4px; /* Adjust gap around the image */
+  }
+
+  .about-img img {
+    width: 200px; /* Adjust image size for mobile */
+    height: 200px;
+  }
+
+  .about-text {
+    text-align: center; /* Center-align text on mobile */
+  }
+}
+
+/* Keyframe for fading in "About Me" text */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

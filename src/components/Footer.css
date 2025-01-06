@@ -1,0 +1,46 @@
+.footer {
+  
+  padding: 20px 10px;
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+}
+
+.footer p {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.footer .social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  color: #ffffff;
+}
+
+.footer a {
+  font-size: 20px;
+  color: #333;
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+  color: #ffffff;
+}
+
+.footer a:hover {
+  color: #0077b5; /* Change to primary brand color */
+  transform: scale(1.2);
+}
+
+.footer a:active {
+  color: #005582; /* Slightly darker shade on click */
+}
+
+@media (max-width: 768px) {
+  .footer p {
+    font-size: 12px;
+  }
+
+  .footer a {
+    font-size: 18px;
+  }
+}
