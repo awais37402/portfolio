@@ -1,0 +1,112 @@
+.testimonial {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  padding: 2rem;
+}
+
+.testimonial-heading {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #4a4a4a;
+}
+.testimonial h2 {
+  font-size: 42px;
+  margin-bottom: 30px;
+  font-weight: 600;
+  color: #333;
+  padding: 10px 30px;
+  background-color: #ffd900;
+  border-radius: 20px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial h2:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+.testimonial-container {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 15px;
+  padding: 2rem;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-images {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.testimonial-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.testimonial-circle.active {
+  transform: scale(1.2);
+  opacity: 1;
+  border: 3px solid #ffd700;
+}
+
+.testimonial-content {
+  text-align: center;
+  opacity: 0; /* Initially hide the content */
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.testimonial-content.active {
+  opacity: 1; /* Show the content */
+  transform: translateX(0); /* Reset position */
+}
+
+.testimonial-content.exiting {
+  opacity: 0; /* Fade out */
+  transform: translateX(100%); /* Move out to the right */
+}
+
+blockquote {
+  font-style: italic;
+  font-size: 1.2rem;
+  color: #555;
+}
+
+h4 {
+  font-size: 1.1rem;
+  color: #333;
+  margin: 0.5rem 0;
+}
+
+p {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.testimonial-navigation {
+  margin-top: 1rem;
+}
+
+.nav-btn {
+  background-color: #ffd700;
+  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 0 0.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.nav-btn:hover {
+  background-color: #e5b800;
+}

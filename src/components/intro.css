@@ -1,0 +1,192 @@
+/* Fullscreen container */
+.intro-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: #1e2a47; /* Dark gradient background for a modern look */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 1s ease;
+  animation: fadeIn 2s ease-out;
+  overflow: hidden; /* Prevent bubbles from overflowing */
+}
+
+/* Fade-in animation for the entire intro screen */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Content styling: text and image */
+.intro-content {
+  text-align: center;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  animation: scaleUp 1s ease-out; /* Scaling the content for a smooth appearance */
+}
+
+/* Scale-up effect for the content */
+@keyframes scaleUp {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Image style */
+.intro-content img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%; /* Rounded image */
+  margin-bottom: 20px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.8); /* Glowing effect */
+  animation: pulse 1.5s infinite; /* Gentle pulsing effect */
+}
+
+/* Pulsing animation for the image */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Title text styling */
+.intro-content h1 {
+  font-size: 36px;
+  margin-top: 20px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  animation: fadeInUp 1s ease-out; /* Fade-up effect for the title */
+}
+
+/* Fade-up animation for the title text */
+@keyframes fadeInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Adding a subtle dark overlay */
+.intro-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* Darker overlay */
+  z-index: -1;
+}
+
+/* Bubbles Animation */
+.bubble {
+  position: absolute;
+  bottom: -50px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  animation: floatUp 6s infinite ease-in;
+  pointer-events: none; /* Prevent interaction with bubbles */
+}
+
+/* Keyframes for bubble floating effect */
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(0.5);
+    opacity: 0.7;
+  }
+  25% {
+    transform: translateY(-50px) scale(0.7);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-100px) scale(1);
+    opacity: 0.7;
+  }
+  75% {
+    transform: translateY(-150px) scale(0.9);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-200px) scale(0.6);
+    opacity: 0;
+  }
+}
+
+/* Creating multiple bubbles with random sizes, positions, and timings */
+.bubble:nth-child(1) {
+  left: 10%;
+  animation-duration: 6s;
+  animation-delay: 0s;
+}
+
+.bubble:nth-child(2) {
+  left: 20%;
+  animation-duration: 7s;
+  animation-delay: 1s;
+}
+
+.bubble:nth-child(3) {
+  left: 30%;
+  animation-duration: 8s;
+  animation-delay: 2s;
+}
+
+.bubble:nth-child(4) {
+  left: 40%;
+  animation-duration: 9s;
+  animation-delay: 3s;
+}
+
+.bubble:nth-child(5) {
+  left: 50%;
+  animation-duration: 6s;
+  animation-delay: 4s;
+}
+
+.bubble:nth-child(6) {
+  left: 60%;
+  animation-duration: 7s;
+  animation-delay: 5s;
+}
+
+.bubble:nth-child(7) {
+  left: 70%;
+  animation-duration: 8s;
+  animation-delay: 6s;
+}
+
+.bubble:nth-child(8) {
+  left: 80%;
+  animation-duration: 9s;
+  animation-delay: 7s;
+}
+
+.bubble:nth-child(9) {
+  left: 90%;
+  animation-duration: 6s;
+  animation-delay: 8s;
+}

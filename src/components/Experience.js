@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./Experience.css";
 
 const Experience = () => {
@@ -25,61 +25,16 @@ const Experience = () => {
     },
   ];
 
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [currentPointIndex, setCurrentPointIndex] = useState(0);
-  const [currentText, setCurrentText] = useState("");
-  const [isTyping, setIsTyping] = useState(true);
-
-  useEffect(() => {
-    if (currentIndex < experiences.length) {
-      const currentExperience = experiences[currentIndex];
-      const currentPoint = currentExperience.description[currentPointIndex];
-
-      let typingInterval;
-
-      if (isTyping) {
-        typingInterval = setInterval(() => {
-          if (currentText.length < currentPoint.length) {
-            setCurrentText(currentPoint.slice(0, currentText.length + 1));
-          } else {
-            clearInterval(typingInterval);
-            setIsTyping(false);
-          }
-        }, 20); // Typing speed
-      } else {
-        const pauseTimeout = setTimeout(() => {
-          if (currentPointIndex < currentExperience.description.length - 1) {
-            setCurrentText("");
-            setCurrentPointIndex((prev) => prev + 1);
-            setIsTyping(true);
-          } else {
-            setTimeout(() => {
-              setCurrentText("");
-              setCurrentPointIndex(0);
-              setCurrentIndex((prev) => prev + 1);
-              setIsTyping(true);
-            }, 1000); // Pause between experiences
-          }
-        }, 800);
-        return () => clearTimeout(pauseTimeout);
-      }
-
-      return () => clearInterval(typingInterval);
-    }
-  }, [currentText, currentPointIndex, currentIndex, isTyping, experiences]);
-
   return (
     <section className="experience" id="experience">
       <h2>My Expertise</h2>
       <div className="experience-list">
-        {experiences.slice(0, currentIndex + 1).map((exp, index) => (
+        {experiences.map((exp, index) => (
           <div className="experience-item" key={index}>
             <h3>{exp.title}</h3>
             <ul>
-              {exp.description.slice(0, index === currentIndex ? currentPointIndex + 1 : exp.description.length).map((point, idx) => (
-                <li key={idx} className={index === currentIndex && idx === currentPointIndex ? "typing" : ""}>
-                  {index === currentIndex && idx === currentPointIndex ? currentText : point}
-                </li>
+              {exp.description.map((point, idx) => (
+                <li key={idx}>{point}</li>
               ))}
             </ul>
           </div>

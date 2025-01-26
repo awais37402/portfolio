@@ -1,113 +1,96 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { FaLinkedin, FaGithub, FaFacebook, FaWhatsapp } from 'react-icons/fa'; // Import Facebook icon
-import './Hero.css';
+import React from "react";
+import { motion } from "framer-motion";
+import "./Hero.css";
 
 const Hero = () => {
+  const downloadResume = () => {
+    const link = document.createElement('a');
+    link.href = './Awais.pdf'; // Path to the PDF in the public folder
+    link.download = 'Awais.pdf'; // The name for the downloaded file
+    link.click();
+  };
+  
+
   return (
-    <section className="hero" id="home">
-      <motion.div
-        className="hero-content"
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-      >
+    <section className="hero">
+      <div className="hero-content">
+        {/* Heading */}
         <motion.h1
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
         >
-          Hi, I'm <span>Awais</span>
+          Hi, I'm <span className="highlight">Awais</span>
         </motion.h1>
 
+        {/* Subtitle */}
         <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1 }}
+          className="subtitle"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.2 }}
         >
-          <span>A Web Developer & Graphic Designer</span>
+          A Web Developer & Graphic Designer
         </motion.p>
 
-        <motion.h2
-          initial={{ opacity: 0, y: 50 }}
+        {/* Description */}
+        <motion.p
+          className="description"
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1.5 }}
+          transition={{ duration: 1, delay: 0.4 }}
         >
           Crafting Stunning Websites and Designs.
-        </motion.h2>
+        </motion.p>
 
+        {/* Buttons */}
         <motion.div
-          className="cta-buttons"
-          initial={{ opacity: 0, y: 50 }}
+          className="buttons"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.6 }}
+        >
+          <a href="#projects">
+            <button className="btn-primary">View Projects</button>
+          </a>
+
+          {/* Download CV Button */}
+          <button className="btn-secondary" onClick={downloadResume}>
+            Download CV
+          </button>
+        </motion.div>
+
+        {/* Social Icons */}
+        <motion.div
+          className="social-icons"
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 2 }}
+          transition={{ duration: 1, delay: 0.8 }}
         >
-          <a href="#projects" className="btn view-projects">
-            View Projects
+          <a href="#linkedin" aria-label="LinkedIn">
+            <i className="fab fa-linkedin"></i>
           </a>
-          <a href="#contact" className="btn contact-me">
-            Contact Me
+          <a href="#github" aria-label="GitHub">
+            <i className="fab fa-github"></i>
+          </a>
+          <a href="#facebook" aria-label="Facebook">
+            <i className="fab fa-facebook"></i>
+          </a>
+          <a href="#whatsapp" aria-label="WhatsApp">
+            <i className="fab fa-whatsapp"></i>
           </a>
         </motion.div>
+      </div>
 
-        <motion.div
-          className="social-links"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 2.5 }}
-        >
-          <a
-            href="https://www.linkedin.com/in/awais-tahir-172299258/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-icon"
-          >
-            <FaLinkedin />
-          </a>
-          <a
-            href="https://www.github.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-icon"
-          >
-            <FaGithub />
-          </a>
-          <a
-            href="https://web.facebook.com/awais.tahir.3762"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-icon"
-          >
-            <FaFacebook />
-          </a>
-          <a
-            href="https://wa.me/1234567890" // Replace with your WhatsApp number
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-icon"
-          >
-            <FaWhatsapp />
-          </a>
-        </motion.div>
-
-        <motion.div
-          className="scroll-down"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 3 }}
-        >
-          <a href="#about" className="scroll-icon">
-            ↓
-          </a>
-        </motion.div>
-      </motion.div>
-
+      {/* Scroll Indicator */}
       <motion.div
-        className="hero-background"
-        initial={{ scale: 1.5 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 1, ease: 'easeInOut' }}
-      />
+        className="scroll-indicator"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 1 }}
+      >
+        ↓ Scroll Down
+      </motion.div>
     </section>
   );
 };
