@@ -58,7 +58,7 @@ const Testimonial = () => {
   };
 
   return (
-    <section className="testimonial">
+    <section id="testimonial" className="testimonial">
       <h2 className="testimonial-heading">Testimonials</h2>
       <div className="testimonial-container">
         {/* Circular Images */}

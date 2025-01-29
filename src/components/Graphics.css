@@ -1,0 +1,133 @@
+/* Wrapper for the entire section */
+.graphics-wrapper {
+    text-align: center;
+    width: 100%;
+    padding: 20px;
+}
+
+/* Heading styling */
+.graphics-heading {
+    font-size: 36px;
+    margin-bottom: 15px;
+    font-weight: 600;
+    color: #333;
+    padding: 12px 25px;
+    background-color: #ffd900;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.graphics-heading:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Styling the container */
+.graphics-container {
+    width: 100%;
+    max-width: 700px;
+    margin: auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+/* Slider container */
+.graphics-slider {
+    width: 100%;
+}
+
+/* Image styling */
+.slide-img {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Swiper pagination (small dots under the slider) */
+.swiper-pagination {
+    position: relative !important; /* Ensure dots are below the div */
+    margin-top: 15px;
+}
+
+/* Styling individual dots */
+.swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background: #ccc;
+    opacity: 0.8;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+/* Bullet hover effect */
+.swiper-pagination-bullet:hover {
+    background: #ff6b6b;
+}
+
+/* Active bullet */
+.swiper-pagination-bullet-active {
+    background: #ff6b6b;
+    width: 13px;
+    height: 13px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .graphics-heading {
+        font-size: 28px;
+        padding: 10px 20px;
+    }
+
+    .graphics-container {
+        max-width: 90%;
+        padding: 15px;
+    }
+
+    .slide-img {
+        max-height: 300px;
+    }
+
+    .swiper-pagination-bullet {
+        width: 8px;
+        height: 8px;
+    }
+
+    .swiper-pagination-bullet-active {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .graphics-heading {
+        font-size: 24px;
+        padding: 8px 15px;
+        border-radius: 10px;
+    }
+
+    .graphics-container {
+        max-width: 100%;
+        padding: 10px;
+    }
+
+    .slide-img {
+        max-height: 250px;
+    }
+
+    .swiper-pagination-bullet {
+        width: 6px;
+        height: 6px;
+    }
+
+    .swiper-pagination-bullet-active {
+        width: 8px;
+        height: 8px;
+    }
+}
