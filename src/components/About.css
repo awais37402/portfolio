@@ -8,15 +8,16 @@
 .about h2 {
   font-size: 40px;
   margin-bottom: 30px;
-  color: #333;
+  color: #ffffff;
   font-weight: bold;
   text-transform: uppercase;
-  background-color: #ffd900;
+  background: linear-gradient(90deg, #7b42f6, #ff8c00)/* Orange color */;
   letter-spacing: 2px;
   display: inline-block;
   padding: 10px 30px;
   border-radius: 20px;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  
 }
 
 /* About Paragraph */
@@ -31,11 +32,12 @@
   border-radius: 30px;
   background-color: rgb(255, 255, 255);
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  border: 2px solid #7b42f6; /* Added border around p */
 }
 
 /* Highlight Text */
 .about .highlight {
-  color: #ffd900;
+  color: #7b42f6;
   font-weight: bold;
 }
 
@@ -48,7 +50,7 @@
   align-items: center;
   border-radius: 50%;
   padding: 6px;
-  background-color: rgb(255, 255, 255);
+  background: linear-gradient(90deg, #7b42f6, #ff8c00)/* Orange color */;
   margin-bottom: 20px;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
 }
