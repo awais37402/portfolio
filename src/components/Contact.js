@@ -1,93 +1,83 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Contact.css";
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (formData.name && formData.email && formData.message) {
+      console.log("Form Data Submitted:", formData);
+      setSubmitted(true);
+      setTimeout(() => setSubmitted(false), 3000); // Reset after 3 seconds
+      setFormData({ name: "", email: "", message: "" });
+    }
+  };
+
   return (
-    
-    <div id="contact" className="contact-container">
-      {/* Header outside the contact card */}
-      <h2 className="contact-header">Contact Me</h2>
-      
-      <div className="contact-card">
-        <p className="contact-subheader">
-          Reach out to me through any of the links below.
-        </p>
-
-        {/* Location */}
-        <div className="contact-item">
-          <span className="contact-label">Location:</span>
-          <span className="contact-link">Rawalpindi, Pakistan</span>
+    <section className="contact-section">
+      <div className="contact-container">
+        {/* Contact Info */}
+        <div className="contact-info">
+          <h2>Contact Me</h2>
+          <p>Let's work together! Feel free to reach out for any project or collaboration.</p>
+          <div className="info-item">
+            <i className="fas fa-envelope"></i> awaistahir01234@gmail.com
+          </div>
+          <div className="info-item">
+            <i className="fas fa-phone"></i> +92 321 3762964
+          </div>
+          <div className="info-item">
+            <i className="fas fa-map-marker-alt"></i> Rawalpindi, Pakistan
+          </div>
         </div>
 
-        {/* Phone */}
-        <div className="contact-item">
-          <span className="contact-label">Phone:</span>
-          <a href="tel:+923213762964" className="contact-link">
-            +92 321 3762964
-          </a>
-        </div>
-
-        {/* Email */}
-        <div className="contact-item">
-          <span className="contact-label">Email:</span>
-          <a href="mailto:awaistahir01234@gmail.com" className="contact-link">
-            awaistahir01234@gmail.com
-          </a>
-        </div>
-
-        {/* LinkedIn */}
-        <div className="contact-item">
-          <span className="contact-label">LinkedIn:</span>
-          <a
-            href="https://www.linkedin.com/in/awais-tahir-172299258/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="contact-link"
-          >
-            https://www.linkedin.com/in/awais-tahir-172299258/
-          </a>
-        </div>
-
-        {/* Web Portfolio */}
-        <div className="contact-item">
-          <span className="contact-label">Web Portfolio:</span>
-          <a
-            href="https://portfolio1-olive-three.vercel.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="contact-link"
-          >
-            https://portfolio1-olive-three.vercel.app/
-          </a>
-        </div>
-
-        {/* Graphics Portfolio */}
-        <div className="contact-item">
-          <span className="contact-label">Graphics Portfolio:</span>
-          <a
-            href="https://www.behance.net/awaistahir3808"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="contact-link"
-          >
-            https://www.behance.net/awaistahir3808
-          </a>
-        </div>
-
-        {/* GitHub */}
-        <div className="contact-item">
-          <span className="contact-label">GitHub:</span>
-          <a
-            href="https://github.com/awais37402"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="contact-link"
-          >
-            https://github.com/awais37402
-          </a>
+        {/* Contact Form */}
+        <div className="contact-form">
+          <h2>Send a Message</h2>
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              name="name"
+              placeholder="Your Name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Your Email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+            <textarea
+              name="message"
+              placeholder="Your Message"
+              rows="5"
+              value={formData.message}
+              onChange={handleChange}
+              required
+            ></textarea>
+            <button type="submit" className="btn-submit">
+              Send Message
+            </button>
+          </form>
+          {submitted && <p className="success-message">Message Sent Successfully! 🎉</p>}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
