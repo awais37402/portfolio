@@ -12,21 +12,21 @@ import Graphics from "./components/Graphics";
 import './styles.css';
 import './App.css';
 
-import { FaArrowUp } from 'react-icons/fa'; // Professional arrow icon
+import { FaWhatsapp } from 'react-icons/fa'; // Import WhatsApp icon
 
 function App() {
-  const [showScroll, setShowScroll] = useState(false);
+  const [showWhatsapp, setShowWhatsapp] = useState(false);
 
-  // Show the scroll button when the user scrolls down
+  // Show the WhatsApp icon when the user scrolls down
   const handleScroll = () => {
-    setShowScroll(window.scrollY > 300);
+    setShowWhatsapp(window.scrollY > 300); // Change to true when scroll position is more than 300px
   };
 
-  // Scroll to the top
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  // Scroll to WhatsApp chat (you can change the link based on your WhatsApp number)
+  const openWhatsapp = () => {
+    window.open("https://wa.me/923213762964", "_blank"); // Your WhatsApp number
   };
-
+  
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -45,12 +45,13 @@ function App() {
       <Contact />
       <Footer />
 
-      {/* Scroll to Top Button */}
-      {showScroll && (
-        <button className="scroll-to-top" onClick={scrollToTop}>
-          <FaArrowUp />
-        </button>
-      )}
+      {/* WhatsApp Icon with Animation */}
+      <button
+        className={`whatsapp-icon ${showWhatsapp ? 'show' : ''}`}
+        onClick={openWhatsapp}
+      >
+        <FaWhatsapp />
+      </button>
     </div>
   );
 }
