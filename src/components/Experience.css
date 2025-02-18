@@ -9,9 +9,9 @@
     font-size: 42px;
     margin-bottom: 30px;
     font-weight: 600;
-    color: #333;
+    color: #ffffff;
     padding: 10px 30px;
-    background-color: #ffd900;
+    background: linear-gradient(90deg, #7b42f6, #ff8c00)/* Orange color */;
     border-radius: 20px;
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
     display: inline-block;
@@ -33,7 +33,7 @@
 .experience-item {
     background: linear-gradient(145deg, #ffffff, #f6f6f6);
     padding: 30px 40px;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #7b42f6;
     border-radius: 20px;
     width: 100%;
     max-width: 750px;
@@ -52,7 +52,7 @@
 .experience-item h3 {
     margin-bottom: 15px;
     font-size: 2rem;
-    color: #222;
+    color: #7b42f6;
     font-weight: 600;
     font-family: "Poppins", sans-serif;
 }
