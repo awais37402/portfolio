@@ -10,9 +10,9 @@
     font-size: 36px;
     margin-bottom: 15px;
     font-weight: 600;
-    color: #333;
+    color: #ffffff;
     padding: 12px 25px;
-    background-color: #ffd900;
+    background: linear-gradient(90deg, #7b42f6, #ff8c00)/* Orange color */;
     border-radius: 12px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     display: inline-block;
