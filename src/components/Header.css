@@ -45,7 +45,7 @@
 }
 
 .contact-button {
-  background-color: #ff8c00;
+  background: linear-gradient(90deg, #7b42f6, #ff8c00)/* Orange color */;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -126,7 +126,7 @@
   transform: rotate(-45deg) translate(5px, -5px);
 }
 .header {
-  border-bottom: 2px solid #ffcc00;
+  border-bottom: 2px solid #7b42f6;
 }
 /* Mobile-Only Styles (max-width: 768px) */
 @media (max-width: 768px) {
