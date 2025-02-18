@@ -1,113 +1,237 @@
+/* Reset some basic styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 /* Hero Section */
 .hero {
+  min-height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
-  min-height: 100vh; /* Adjust height dynamically to allow scrolling */
-
-  text-align: center;
-  padding: 0 20px;
-  position: relative; /* For scroll indicator positioning */
+  justify-content: center;
+  padding: 50px 5%;
+  gap: 40px;
+  flex-wrap: wrap;
+  background: linear-gradient(to right, #81C7E4, #F4F9FF); /* Soft gradient */
 }
 
-.hero-content {
-  max-width: 600px;
-  margin: auto;
+/* Left Text Section */
+.hero-text {
+  flex: 1;
+  max-width: 550px;
+  text-align: left;
 }
 
-h1 {
-  font-size: 48px;
-  color: #000;
+.hero-text h1 {
+  font-size: 40px;
   font-weight: bold;
-  margin-bottom: 10px;
+  color: #333;
+  margin-bottom: 15px;
 }
 
-.highlight {
-  color: #ff8c00;
+.gradient-text {
+  background: linear-gradient(90deg, #a774ff, #ff8c00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.subtitle {
-  font-size: 20px;
-  color: #555;
+.hero-text p {
+  font-size: 18px;
+  color: #666;
   margin-bottom: 20px;
 }
 
-.description {
-  font-size: 18px;
-  color: #333;
-  margin-bottom: 30px;
-  font-weight: 500;
-}
-
-.buttons {
+/* Buttons */
+.hero-buttons {
   display: flex;
-  justify-content: center;
   gap: 15px;
-  margin-bottom: 30px;
+  flex-wrap: wrap;
 }
 
-.btn-primary,
-.btn-secondary {
-  padding: 12px 25px;
-  border-radius: 25px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.btn-primary {
-  background-color: #ff8c00;
+.btn-gradient {
+  background: linear-gradient(90deg, #7b42f6, #ff8c00);
   color: white;
-  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-size: 18px;
+  text-decoration: none;
+  transition: 0.3s;
 }
 
-.btn-primary:hover {
-  background-color: #e67e00;
+.btn-gradient:hover {
+  opacity: 0.8;
 }
 
-.btn-secondary {
-  background-color: white;
-  color: #ff8c00;
+.btn-outline {
   border: 2px solid #ff8c00;
+  color: #333;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-size: 18px;
+  text-decoration: none;
+  transition: 0.3s;
 }
 
-.btn-secondary:hover {
-  background-color: #ffe6cc;
+.btn-outline:hover {
+  background: #f0f0f0;
 }
 
-.social-icons {
+/* Stats */
+.hero-stats {
+  display: flex;
+  gap: 30px;
+  margin-top: 30px;
+  font-size: 18px;
+  font-weight: 500;
+  flex-wrap: wrap;
+}
+
+.hero-stats span {
+  font-size: 22px;
+  font-weight: bold;
+  color: #222;
+}
+
+.hero-stats p {
+  color: #777;
+}
+
+/* Image Section */
+/* Hero Image Section */
+.hero-image {
+  position: relative;
   display: flex;
   justify-content: center;
-  gap: 20px;
+  align-items: center;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: linear-gradient(to bottom, transparent, #0066cc); /* Blue gradient at the bottom */
 }
 
-.social-icons a {
-  font-size: 24px;
-  color: #555;
-  transition: color 0.3s;
+.profile-pic {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
 }
 
-.social-icons a:hover {
-  color: #ff8c00;
-}
-
-/* Scroll Indicator */
-.scroll-indicator {
+/* Icons Around Image */
+.icon {
   position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 20px;
-  color: #ff8c00;
-  animation: bounce 1.5s infinite;
+  background: white;
+  padding: 12px;
+  border-radius: 50%;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-@keyframes bounce {
-  0%, 100% {
-    transform: translate(-50%, 0);
+/* Only 3 Icons with Equal Spacing */
+.icon:nth-child(2) { top: -55px; left: 50%; transform: translateX(-50%); }   /* Top */
+.icon:nth-child(3) { bottom: 20px; left: 0%; transform: translateX(-50%); }  /* Bottom Left */
+.icon:nth-child(4) { bottom: 20px; right: 0%; transform: translateX(50%); }  /* Bottom Right */
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-text h1 {
+    font-size: 32px;
   }
-  50% {
-    transform: translate(-50%, 10px);
+
+  .profile-pic {
+    width: 220px;
+    height: 220px;
+  }
+
+  .icon {
+    font-size: 16px;
+    padding: 8px;
+  }
+
+  /* Hide image and icons on mobile */
+  .hero-image, .icon-container {
+    display: none;
+  }
+
+  /* Adjust stats layout on mobile */
+  .hero-stats {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap into new lines */
+    gap: 20px; /* Space between stats */
+    justify-content: center; /* Center the stats horizontally */
+    margin-top: 20px; /* Add some margin between the top content */
+  }
+
+  .hero-stats span {
+    font-size: 30px; /* Increase the number font size */
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 5px; /* Add space between the number and text */
+    flex-basis: calc(50% - 10px); /* Take up 50% of the width minus gap space */
+    text-align: center; /* Center the number */
+  }
+
+  .hero-stats p {
+    color: #777;
+    font-size: 16px; /* Decrease text font size for better balance */
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 30px 5%;
+    margin-top: 40px; /* Add margin for spacing from the top */
+  }
+
+  .hero-text h1 {
+    font-size: 28px;
+  }
+
+  .hero-text p {
+    font-size: 16px;
+  }
+
+  .btn-gradient, .btn-outline {
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+
+  /* Adjust stats layout on mobile */
+  .hero-stats {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap into new lines */
+    gap: 20px; /* Space between stats */
+    justify-content: center; /* Center the stats horizontally */
+    margin-top: 20px; /* Margin for space from the top */
+  }
+
+  .hero-stats span {
+    font-size: 26px; /* Decrease font size slightly */
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 5px;
+    flex-basis: calc(50% - 10px); /* Ensure 2 stats per row */
+    text-align: center; /* Center the number */
+  }
+
+  .hero-stats p {
+    color: #777;
+    font-size: 14px; /* Adjust text font size */
+    text-align: center;
+  }
+
+  .profile-pic {
+    width: 180px;
+    height: 180px;
+  }
+
+  .icon {
+    font-size: 14px;
+    padding: 6px;
   }
 }
