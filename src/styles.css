@@ -2,7 +2,7 @@ body {
   margin: 0;
   font-family: 'Arial', sans-serif;
   scroll-behavior: smooth;
-  background: linear-gradient(to right, #81C7E4, #F4F9FF);  /* Soft gradient */
+  background: #f8f9fa;
 color: white;
   position: relative;
   overflow: hidden;
@@ -34,17 +34,18 @@ html, body {
   transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out, visibility 0.5s;
   opacity: 0; 
   visibility: hidden;
-  transform: translateY(50px); /* Initially pushed down */
+  transform: translateY(50px);
+  z-index: 9999; /* Ensure it appears above all elements */
 }
 
-/* Animation when the icon appears */
+/* Show WhatsApp Icon */
 .whatsapp-icon.show {
   opacity: 1; 
   visibility: visible; 
-  transform: translateY(0px); /* Moves to normal position */
+  transform: translateY(0px);
 }
 
-/* Hover effect */
+/* Hover Effect */
 .whatsapp-icon:hover {
-  transform: translateY(-5px) scale(1.1); /* Moves slightly up and zooms */
+  transform: translateY(-5px) scale(1.1);
 }
