@@ -2,11 +2,12 @@ body {
   margin: 0;
   font-family: 'Arial', sans-serif;
   scroll-behavior: smooth;
-  background: linear-gradient(to right, #81C7E4, #F4F9FF);  /* Soft gradient */
-color: white;
+  background: linear-gradient(to right, #81C7E4, #F4F9FF);
+  color: white;
   position: relative;
   overflow: hidden;
 }
+
 /* Prevent horizontal scrolling on mobile */
 html, body {
   margin: 0;
@@ -15,34 +16,48 @@ html, body {
   width: 100%;
 }
 
-
-/* WhatsApp Icon */
+/* WhatsApp Icon - Positioned at the Top Right */
 .whatsapp-icon {
   position: fixed;
-  bottom: 20px;
+  bottom: 20px;  /* Move to the top */
   right: 20px;
   background-color: #25d366; /* WhatsApp green */
   border-radius: 50%;
-  width: 50px;  /* Set width */
-  height: 50px;  /* Set height to make it a square */
+  width: 55px;
+  height: 55px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px; /* Adjust font size */
+  font-size: 28px;
   color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease-in-out;
-  opacity: 0; /* Initially hidden */
-  visibility: hidden; /* Initially not visible */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000; /* Ensures it stays on top */
+  cursor: pointer;
+  opacity: 0;
+  animation: fadeInUp 1s ease-out forwards, floating 3s infinite ease-in-out;
 }
 
-/* Animation when the icon appears */
-.whatsapp-icon.show {
-  opacity: 1; /* Make it visible */
-  visibility: visible; /* Make it visible */
-  transform: translateY(-20px); /* Animate upwards */
-}
-
+/* Hover Effect */
 .whatsapp-icon:hover {
-  transform: scale(1.1); /* Slight zoom effect */
+  transform: scale(1.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Fade-in & Slide-up Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Floating Animation - Moves Up and Down */
+@keyframes floating {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-8px); } /* Moves up slightly */
+  100% { transform: translateY(0); }
 }
