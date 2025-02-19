@@ -15,22 +15,11 @@ import './App.css';
 import { FaWhatsapp } from 'react-icons/fa'; // Import WhatsApp icon
 
 function App() {
-  const [showWhatsapp, setShowWhatsapp] = useState(false);
+  const [showWhatsapp, setShowWhatsapp] = useState(true); // Always show WhatsApp icon
 
-  // Show the WhatsApp icon when the user scrolls down
-  const handleScroll = () => {
-    setShowWhatsapp(window.scrollY > 300); // Change to true when scroll position is more than 300px
-  };
-
-  // Scroll to WhatsApp chat (you can change the link based on your WhatsApp number)
   const openWhatsapp = () => {
     window.open("https://wa.me/923213762964", "_blank"); // Your WhatsApp number
   };
-  
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   return (
     <div className="app-container">
@@ -45,7 +34,7 @@ function App() {
       <Contact />
       <Footer />
 
-      {/* WhatsApp Icon with Animation */}
+      {/* WhatsApp Icon - Positioned at the Top Right */}
       <button
         className={`whatsapp-icon ${showWhatsapp ? 'show' : ''}`}
         onClick={openWhatsapp}
