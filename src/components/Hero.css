@@ -12,7 +12,7 @@
   align-items: center;
   justify-content: center;
   padding: 50px 5%;
-  gap: 40px;
+  gap: 20%;
   flex-wrap: wrap;
   background: linear-gradient(to right, #81C7E4, #F4F9FF); /* Soft gradient */
 }
