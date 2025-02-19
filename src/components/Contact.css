@@ -16,14 +16,21 @@
   margin: 0 auto;
 }
 
-/* Contact Info */
+/* Contact Info (Left Side) */
 .contact-info {
   flex: 1;
   max-width: 400px;
   text-align: left;
+  opacity: 0;
+  transform: translateX(-100px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
-/* Centering h2 and aligning text properly */
+.contact-info.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 .contact-info h2 {
   font-size: 36px;
   margin-bottom: 15px;
@@ -35,10 +42,8 @@
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   display: inline-block;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  text-align: center;
 }
 
-/* Add hover effect for better interactivity */
 .contact-info h2:hover {
   transform: translateY(-4px);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
@@ -65,7 +70,7 @@
   border-radius: 50%;
 }
 
-/* Contact Form */
+/* Contact Form (Right Side) */
 .contact-form {
   flex: 1;
   max-width: 500px;
@@ -75,15 +80,22 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   text-align: left;
   color: #333;
+  opacity: 0;
+  transform: translateX(100px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.contact-form.show {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .contact-form h2 {
   font-size: 28px;
   margin-bottom: 20px;
-  text-align: center; /* Center the heading */
+  text-align: center;
 }
 
-/* Form Fields */
 .contact-form input,
 .contact-form textarea {
   width: 100%;
@@ -101,7 +113,6 @@
   outline: none;
 }
 
-/* Submit Button */
 .btn-submit {
   width: 100%;
   padding: 12px;
@@ -118,7 +129,6 @@
   opacity: 0.8;
 }
 
-/* Success Message */
 .success-message {
   margin-top: 15px;
   font-size: 16px;
@@ -126,31 +136,18 @@
   font-weight: bold;
 }
 
-/* 📱 Responsive Design (Mobile Fix) */
+/* 📱 Responsive Design */
 @media (max-width: 768px) {
   .contact-container {
     flex-direction: column;
-    align-items: center;
   }
 
-  /* Center h2 and left-align other text */
+  .contact-info, .contact-form {
+    text-align: center;
+    max-width: 100%;
+  }
+
   .contact-info h2 {
     text-align: center;
-    display: block;
-    width: 100%;
-    margin: 0 auto 15px auto;
-  }
-
-  .contact-info {
-    text-align: left;
-    width: 100%;
-  }
-
-  .info-item {
-    justify-content: left;
-  }
-
-  .contact-form {
-    width: 100%;
   }
 }
