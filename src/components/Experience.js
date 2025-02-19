@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import "./Experience.css";
 import { FaCode, FaPaintBrush, FaBriefcase } from "react-icons/fa"; // Import Icons
 
@@ -30,12 +30,34 @@ const experiences = [
 ];
 
 const Experience = () => {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const section = sectionRef.current;
+      if (section) {
+        const sectionTop = section.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        if (sectionTop < windowHeight - 100) {
+          section.classList.add("show");
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Trigger on mount
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <section className="experience-section" id="experience">
+    <section ref={sectionRef} className="experience-section" id="experience">
       <h2 className="experience-title">Experience</h2>
       <div className="experience-container">
         {experiences.map((exp, index) => (
-          <div key={index} className="experience-card">
+          <div key={index} className="experience-card show">
             <div className="experience-icon-box">{exp.icon}</div>
             <h3 className="experience-role">{exp.title}</h3>
             <p className="experience-company">{exp.company}</p>
