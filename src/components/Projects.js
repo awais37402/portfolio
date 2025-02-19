@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import "./Projects.css";
 
 // Project data
@@ -48,17 +48,51 @@ const projects = [
 ];
 
 const Projects = () => {
+  const sectionRef = useRef(null);
+  const cardRefs = useRef([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    cardRefs.current.forEach((card) => {
+      if (card) observer.observe(card);
+    });
+
+    return () => {
+      if (sectionRef.current) observer.unobserve(sectionRef.current);
+      cardRefs.current.forEach((card) => {
+        if (card) observer.unobserve(card);
+      });
+    };
+  }, []);
+
   return (
-    <section id="projects" className="projects-section">
+    <section ref={sectionRef} id="projects" className="projects-section">
       <h2 className="projects-title">My Projects</h2>
       <div className="projects-grid">
-        {projects.map((project) => (
-          <div key={project.id} className="project-card">
+        {projects.map((project, index) => (
+          <div
+            key={project.id}
+            ref={(el) => (cardRefs.current[index] = el)}
+            className={`project-card ${index % 2 === 0 ? "fade-left" : "fade-right"}`}
+          >
             <img src={project.image} alt={project.title} className="project-image" />
             <div className="project-info">
               <h3>{project.title}</h3>
               <p>{project.description}</p>
-              
             </div>
           </div>
         ))}
