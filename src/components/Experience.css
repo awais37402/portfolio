@@ -5,11 +5,14 @@
     background: linear-gradient(to right, #81C7E4, #F4F9FF);  /* Soft gradient */
     color: #111;
     min-height: 100vh;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
 /* Section Title */
 .experience-title {
-    font-size: 42px;
+    font-size: 40px;
     font-weight: 600;
     margin-bottom: 40px;
     text-transform: uppercase;
@@ -40,6 +43,9 @@
     transition: transform 0.3s, box-shadow 0.3s;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border: 2px solid #81C7E4;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
 .experience-card:hover {
@@ -91,4 +97,10 @@
     .experience-container {
         grid-template-columns: 1fr;
     }
+}
+
+/* Animation when in view */
+.show {
+    opacity: 1;
+    transform: translateY(0);
 }
