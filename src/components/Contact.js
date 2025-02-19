@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Contact.css";
 
 const Contact = () => {
@@ -9,6 +9,24 @@ const Contact = () => {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Detect when section is in viewport
+  useEffect(() => {
+    const handleScroll = () => {
+      const section = document.getElementById("contact");
+      if (section) {
+        const rect = section.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          setIsVisible(true);
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Run on mount
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -27,8 +45,8 @@ const Contact = () => {
   return (
     <section className="contact-section" id="contact">
       <div className="contact-container">
-        {/* Contact Info */}
-        <div className="contact-info">
+        {/* Contact Info (Left Side) */}
+        <div className={`contact-info ${isVisible ? "show" : ""}`}>
           <h2>Contact Me</h2>
           <p>Let's work together! Feel free to reach out for any project or collaboration.</p>
           <div className="info-item">
@@ -42,8 +60,8 @@ const Contact = () => {
           </div>
         </div>
 
-        {/* Contact Form */}
-        <div className="contact-form">
+        {/* Contact Form (Right Side) */}
+        <div className={`contact-form ${isVisible ? "show" : ""}`}>
           <h2>Send a Message</h2>
           <form onSubmit={handleSubmit}>
             <input
