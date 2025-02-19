@@ -2,38 +2,44 @@
 .graphics-wrapper {
     text-align: center;
     width: 100%;
-    padding: 20px;
+    padding: 40px 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* Heading styling */
 .graphics-heading {
     font-size: 36px;
-    margin-bottom: 15px;
     font-weight: 600;
     color: #ffffff;
-    padding: 12px 25px;
-    background: linear-gradient(90deg, #7b42f6, #ff8c00)/* Orange color */;
+    padding: 12px 35px;
+    background: linear-gradient(90deg, #7b42f6, #ff8c00);
     border-radius: 12px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     display: inline-block;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-transform: uppercase;
 }
 
 .graphics-heading:hover {
-    transform: translateY(-4px);
+    transform: translateY(-5px);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
 /* Styling the container */
 .graphics-container {
     width: 100%;
-    max-width: 700px;
-    margin: auto;
-    padding: 20px;
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 25px;
     background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.15);
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* Slider container */
@@ -45,25 +51,32 @@
 .slide-img {
     width: 100%;
     height: auto;
-    max-height: 400px;
+    max-height: 450px;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 12px;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Hover effect for images */
+.slide-img:hover {
+    transform: scale(1.05);
 }
 
 /* Swiper pagination (small dots under the slider) */
 .swiper-pagination {
-    position: relative !important; /* Ensure dots are below the div */
+    position: relative !important;
     margin-top: 15px;
 }
 
 /* Styling individual dots */
 .swiper-pagination-bullet {
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     background: #ccc;
     opacity: 0.8;
     transition: 0.3s;
     cursor: pointer;
+    border-radius: 50%;
 }
 
 /* Bullet hover effect */
@@ -74,36 +87,58 @@
 /* Active bullet */
 .swiper-pagination-bullet-active {
     background: #ff6b6b;
-    width: 13px;
-    height: 13px;
+    width: 14px;
+    height: 14px;
 }
 
+/* RESPONSIVE DESIGN */
+
+/* Tablet View */
 @media (max-width: 768px) {
     .graphics-wrapper {
-        text-align: center;
-        width: 90%; /* Reduce width slightly for better alignment */
-        padding: 20px;
-        margin: 0 auto; /* Center wrapper */
+        padding: 30px 4%;
     }
 
     .graphics-heading {
-        font-size: 28px;
-        padding: 10px 25px 10px 15px; /* Adjust left & right padding */
-        margin-left: 5%; /* Shift heading slightly to the left */
-        text-align: left; /* Align heading properly */
-        display: inline-block;
+        font-size: 30px;
+        padding: 10px 25px;
     }
 
     .graphics-container {
-        max-width: 85%;  
-        margin: 10px auto 0 10%; /* More space on the right */
+        max-width: 90%;
+        padding: 20px;
+    }
+
+    .slide-img {
+        max-height: 350px;
+    }
+
+    .swiper-pagination-bullet {
+        width: 10px;
+        height: 10px;
+    }
+
+    .swiper-pagination-bullet-active {
+        width: 12px;
+        height: 12px;
+    }
+}
+
+/* Mobile View */
+@media (max-width: 480px) {
+    .graphics-heading {
+        font-size: 25px;
+        padding: 8px 20px;
+        border-radius: 10px;
+    }
+
+    .graphics-container {
+        max-width: 95%;
         padding: 15px;
     }
 
     .slide-img {
-        max-height: 300px;
-        width: 100%; /* Ensure images fit */
-        object-fit: cover;
+        max-height: 250px;
     }
 
     .swiper-pagination-bullet {
@@ -114,36 +149,5 @@
     .swiper-pagination-bullet-active {
         width: 10px;
         height: 10px;
-    }
-}
-
-@media (max-width: 480px) {
-    .graphics-heading {
-        font-size: 23px;
-        padding: 8px 20px 8px 12px;
-        border-radius: 10px;
-        margin-left: 2.5%; /* Moves heading left */
-        text-align: left;
-        display: inline-block;
-    }
-
-    .graphics-container {
-        max-width: 90%;  
-        margin: 0 auto 0 2%; /* More left margin for better right spacing */
-        padding: 10px;
-    }
-
-    .slide-img {
-        max-height: 250px;
-    }
-
-    .swiper-pagination-bullet {
-        width: 6px;
-        height: 6px;
-    }
-
-    .swiper-pagination-bullet-active {
-        width: 8px;
-        height: 8px;
     }
 }
