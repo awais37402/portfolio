@@ -30,34 +30,41 @@ const experiences = [
 ];
 
 const Experience = () => {
-  const sectionRef = useRef(null);
+  const cardRefs = useRef([]);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const section = sectionRef.current;
-      if (section) {
-        const sectionTop = section.getBoundingClientRect().top;
-        const windowHeight = window.innerHeight;
-        if (sectionTop < windowHeight - 100) {
-          section.classList.add("show");
-        }
-      }
-    };
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
 
-    window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Trigger on mount
+    cardRefs.current.forEach((card) => {
+      if (card) observer.observe(card);
+    });
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      cardRefs.current.forEach((card) => {
+        if (card) observer.unobserve(card);
+      });
     };
   }, []);
 
   return (
-    <section ref={sectionRef} className="experience-section" id="experience">
+    <section className="experience-section" id="experience">
       <h2 className="experience-title">Experience</h2>
       <div className="experience-container">
         {experiences.map((exp, index) => (
-          <div key={index} className="experience-card show">
+          <div
+            key={index}
+            ref={(el) => (cardRefs.current[index] = el)}
+            className={`experience-card fade-${index % 2 === 0 ? "left" : "right"}`}
+          >
             <div className="experience-icon-box">{exp.icon}</div>
             <h3 className="experience-role">{exp.title}</h3>
             <p className="experience-company">{exp.company}</p>
