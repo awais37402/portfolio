@@ -1,48 +1,67 @@
 import React, { useState } from "react";
 import "./Header.css";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsMenuOpen((prevState) => !prevState);
-  };
+  // Toggle mobile menu visibility
+  const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
+
+  // Close menu when a link is clicked
+  const closeMenu = () => setMobileMenuOpen(false);
 
   return (
-    <>
-      {/* Overlay Background */}
-      <div className={`overlay ${isMenuOpen ? "active" : ""}`} onClick={toggleMenu}></div>
-
-      {/* Header */}
-      <header className="header">
-        <div className="logo">
-          Awais <span className="highlight">Tahir</span>
-        </div>
-
-        {/* Trendy Hamburger Menu */}
-        <div className={`hamburger ${isMenuOpen ? "active" : ""}`} onClick={toggleMenu}>
-          <div className="line"></div>
-          <div className="line"></div>
-          <div className="line"></div>
-        </div>
-
-        {/* Navigation Menu */}
-        <nav className={`nav ${isMenuOpen ? "active" : ""}`}>
-          <ul className="nav-list">
-            <li><a href="/app" onClick={toggleMenu}>Home</a></li>
-            <li><a href="#about" onClick={toggleMenu}>About</a></li>
-            <li><a href="#experience" onClick={toggleMenu}>Services</a></li>
-            <li><a href="#projects" onClick={toggleMenu}>Portfolio</a></li>
-            <li><a href="#testimonial" onClick={toggleMenu}>Testimonials</a></li>
-          </ul>
-        </nav>
-
-        {/* Contact Button (Visible on Desktop) */}
-        <a href="#contact">
-          <button className="contact-button">Contact</button>
+    <header className="header">
+      {/* Logo */}
+      <div className="logo">
+        <a href="#home" aria-label="Home">
+          <span>Awais</span> <span className="highlight">Tahir</span>
         </a>
-      </header>
-    </>
+      </div>
+
+      {/* Desktop Navigation */}
+      <nav className="nav">
+        <ul className="nav-links">
+          {["Home", "About", "Experience", "Projects", "Testimonial"].map(
+            (item) => (
+              <li key={item}>
+                <a href={`#${item.toLowerCase()}`}>{item}</a>
+              </li>
+            )
+          )}
+        </ul>
+      </nav>
+
+      {/* Contact Button (Visible on Desktop Only) */}
+      <a href="#contact" className="contact-btn">
+        Contact
+      </a>
+
+      {/* Mobile Menu Button */}
+      <button
+        className="menu-btn"
+        onClick={toggleMobileMenu}
+        aria-label={mobileMenuOpen ? "Close Menu" : "Open Menu"}
+      >
+        {mobileMenuOpen ? <FaTimes /> : <FaBars />}
+      </button>
+
+      {/* Mobile Navigation */}
+      <nav className={`mobile-nav ${mobileMenuOpen ? "show" : ""}`}>
+        <ul>
+          {["Home", "About", "Experience", "Projects", "Testimonial"].map(
+            (item) => (
+              <li key={item}>
+                <a href={`#${item.toLowerCase()}`} onClick={closeMenu}>
+                  {item}
+                </a>
+              </li>
+            )
+          )}
+        </ul>
+      </nav>
+    </header>
   );
 };
 
