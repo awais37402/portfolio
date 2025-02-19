@@ -23,7 +23,7 @@ const images = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10];
 const Graphics = () => {
   return (
     <div className="graphics-wrapper">
-      <h2 className="graphics-heading">My Graphic Design Projects</h2> {/* Heading is now outside */}
+      <h2 className="graphics-heading">Graphic Design Projects</h2> {/* Heading is now outside */}
       <div className="graphics-container">
         <Swiper
           modules={[Pagination, Autoplay]}
