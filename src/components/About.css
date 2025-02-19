@@ -3,6 +3,14 @@
   padding: 80px 20px;
   text-align: center;
   color: #333;
+  opacity: 0; /* Initially hidden */
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.about.fade-in {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .about h2 {
@@ -11,13 +19,12 @@
   color: #ffffff;
   font-weight: bold;
   text-transform: uppercase;
-  background: linear-gradient(90deg, #7b42f6, #ff8c00)/* Orange color */;
+  background: linear-gradient(90deg, #7b42f6, #ff8c00);
   letter-spacing: 2px;
   display: inline-block;
   padding: 10px 30px;
   border-radius: 20px;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-  
 }
 
 /* About Paragraph */
@@ -32,7 +39,7 @@
   border-radius: 30px;
   background-color: rgb(255, 255, 255);
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-  border: 2px solid #7b42f6; /* Added border around p */
+  border: 2px solid #7b42f6;
 }
 
 /* Highlight Text */
@@ -50,7 +57,7 @@
   align-items: center;
   border-radius: 50%;
   padding: 6px;
-  background: linear-gradient(90deg, #7b42f6, #ff8c00)/* Orange color */;
+  background: linear-gradient(90deg, #7b42f6, #ff8c00);
   margin-bottom: 20px;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
 }
