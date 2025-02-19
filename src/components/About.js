@@ -9,9 +9,11 @@ const About = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsInView(entry.isIntersecting);
+        if (entry.isIntersecting) {
+          setIsInView(true);
+        }
       },
-      { threshold: 0.5 } // Trigger when 50% of the section is visible
+      { root: null, threshold: 0.2 } // Detect visibility from any scroll direction
     );
 
     if (aboutRef.current) {
@@ -24,15 +26,15 @@ const About = () => {
   }, []);
 
   return (
-    <section className={`about ${isInView ? 'fade-in' : ''}`} id="about" ref={aboutRef}>
+    <section className="about-section" id="about" ref={aboutRef}>
       <div className="about-container">
         {/* About Image */}
-        <div className="about-img">
+        <div className={`about-img ${isInView ? 'slide-in-left' : ''}`}>
           <img src={awaisImage} alt="Awais" />
         </div>
 
         {/* About Text */}
-        <div className="about-text">
+        <div className={`about-text ${isInView ? 'slide-in-right' : ''}`}>
           <h2>About Me</h2>
           <p>
             I am a passionate <span className="highlight">Web Developer</span> and{' '}
