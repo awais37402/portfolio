@@ -1,62 +1,57 @@
-/* Reset some basic styling */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* Hero Section */
+/* General Styling */
 .hero {
-  min-height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 50px 5%;
-  gap: 20%;
-  flex-wrap: wrap;
-  background: linear-gradient(to right, #81C7E4, #F4F9FF); /* Soft gradient */
+  justify-content: space-between;
+  padding: 100px 10%;
+ 
+  overflow: hidden;
 }
 
-/* Left Text Section */
 .hero-text {
-  flex: 1;
-  max-width: 550px;
-  text-align: left;
+  max-width: 50%;
+  opacity: 0;
+  transform: translateX(-100px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.hero-text.show-left {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .hero-text h1 {
-  font-size: 40px;
+  font-size: 2.5rem;
   font-weight: bold;
   color: #333;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .gradient-text {
-  background: linear-gradient(90deg, #a774ff, #ff8c00);
+  background: linear-gradient(90deg, #ff8c00, #ff2e63);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .hero-text p {
-  font-size: 18px;
-  color: #666;
+  font-size: 1.1rem;
+  color: #555;
   margin-bottom: 20px;
 }
 
-/* Buttons */
 .hero-buttons {
   display: flex;
   gap: 15px;
-  flex-wrap: wrap;
+  margin-top: 20px;
 }
 
 .btn-gradient {
-  background: linear-gradient(90deg, #7b42f6, #ff8c00);
+  padding: 10px 20px;
+  background: linear-gradient(90deg, #ff8c00, #ff2e63);
   color: white;
-  padding: 12px 25px;
-  border-radius: 8px;
-  font-size: 18px;
   text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
   transition: 0.3s;
 }
 
@@ -65,173 +60,77 @@
 }
 
 .btn-outline {
-  border: 2px solid #ff8c00;
-  color: #333;
-  padding: 12px 25px;
-  border-radius: 8px;
-  font-size: 18px;
+  padding: 10px 20px;
+  border: 2px solid #ff2e63;
+  color: #ff2e63;
   text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
   transition: 0.3s;
 }
 
 .btn-outline:hover {
-  background: #f0f0f0;
+  background: #ff2e63;
+  color: white;
 }
 
-/* Stats */
 .hero-stats {
   display: flex;
   gap: 30px;
   margin-top: 30px;
-  font-size: 18px;
-  font-weight: 500;
-  flex-wrap: wrap;
+}
+
+.hero-stats div {
+  text-align: center;
 }
 
 .hero-stats span {
-  font-size: 22px;
+  font-size: 2rem;
   font-weight: bold;
-  color: #222;
+  color: #ff2e63;
 }
 
-.hero-stats p {
-  color: #777;
-}
-
-/* Image Section */
-/* Hero Image Section */
+/* Right Image */
 .hero-image {
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  background: linear-gradient(to bottom, transparent, #0066cc); /* Blue gradient at the bottom */
+  max-width: 40%;
+  opacity: 0;
+  transform: translateX(100px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.hero-image.show-right {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .profile-pic {
-  width: 280px;
-  height: 280px;
-  border-radius: 50%;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Icons Around Image */
+/* Icons */
 .icon {
   position: absolute;
+  font-size: 1.5rem;
   background: white;
-  padding: 12px;
+  padding: 10px;
   border-radius: 50%;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  font-size: 22px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Only 3 Icons with Equal Spacing */
-.icon:nth-child(2) { top: -55px; left: 50%; transform: translateX(-50%); }   /* Top */
-.icon:nth-child(3) { bottom: 20px; left: 0%; transform: translateX(-50%); }  /* Bottom Left */
-.icon:nth-child(4) { bottom: 20px; right: 0%; transform: translateX(50%); }  /* Bottom Right */
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .hero-text h1 {
-    font-size: 32px;
-  }
-
-  .profile-pic {
-    width: 220px;
-    height: 220px;
-  }
-
-  .icon {
-    font-size: 16px;
-    padding: 8px;
-  }
-
-  /* Hide image and icons on mobile */
-  .hero-image, .icon-container {
-    display: none;
-  }
-
-  /* Adjust stats layout on mobile */
-  .hero-stats {
-    display: flex;
-    flex-wrap: wrap; /* Allow items to wrap into new lines */
-    gap: 20px; /* Space between stats */
-    justify-content: center; /* Center the stats horizontally */
-    margin-top: 20px; /* Add some margin between the top content */
-  }
-
-  .hero-stats span {
-    font-size: 30px; /* Increase the number font size */
-    font-weight: bold;
-    color: #222;
-    margin-bottom: 5px; /* Add space between the number and text */
-    flex-basis: calc(50% - 10px); /* Take up 50% of the width minus gap space */
-    text-align: center; /* Center the number */
-  }
-
-  .hero-stats p {
-    color: #777;
-    font-size: 16px; /* Decrease text font size for better balance */
-    text-align: center;
-  }
+.icon:nth-child(2) {
+  top: 10%;
+  left: -30px;
 }
 
-@media (max-width: 480px) {
-  .hero {
-    padding: 30px 5%;
-    margin-top: 40px; /* Add margin for spacing from the top */
-  }
+.icon:nth-child(3) {
+  bottom: 10%;
+  left: -30px;
+}
 
-  .hero-text h1 {
-    font-size: 28px;
-  }
-
-  .hero-text p {
-    font-size: 16px;
-  }
-
-  .btn-gradient, .btn-outline {
-    padding: 10px 20px;
-    font-size: 16px;
-  }
-
-  /* Adjust stats layout on mobile */
-  .hero-stats {
-    display: flex;
-    flex-wrap: wrap; /* Allow items to wrap into new lines */
-    gap: 20px; /* Space between stats */
-    justify-content: center; /* Center the stats horizontally */
-    margin-top: 20px; /* Margin for space from the top */
-  }
-
-  .hero-stats span {
-    font-size: 26px; /* Decrease font size slightly */
-    font-weight: bold;
-    color: #222;
-    margin-bottom: 5px;
-    flex-basis: calc(50% - 10px); /* Ensure 2 stats per row */
-    text-align: center; /* Center the number */
-  }
-
-  .hero-stats p {
-    color: #777;
-    font-size: 14px; /* Adjust text font size */
-    text-align: center;
-  }
-
-  .profile-pic {
-    width: 180px;
-    height: 180px;
-  }
-
-  .icon {
-    font-size: 14px;
-    padding: 6px;
-  }
+.icon:nth-child(4) {
+  top: 50%;
+  right: -30px;
 }
