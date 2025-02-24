@@ -28,7 +28,7 @@ const projects = [
     id: 4,
     title: "Photography Website",
     description: "A gallery-based website showcasing high-quality photos.",
-    image: "https://img.freepik.com/free-vector/flat-landing-page-template-photographer-career_23-2150252489.jpg",
+    image: "https://hasthemes.com/blog/wp-content/uploads/2024/02/pixoto-photography-website-template.jpg",
     link: "#",
   },
   {
