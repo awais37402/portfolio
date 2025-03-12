@@ -8,6 +8,12 @@ const Header = () => {
   // Toggle mobile menu visibility
   const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
 
+  // Scroll to top when "Home" is clicked
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    closeMenu();
+  };
+
   // Close menu when a link is clicked
   const closeMenu = () => setMobileMenuOpen(false);
 
@@ -15,7 +21,7 @@ const Header = () => {
     <header className="header">
       {/* Logo */}
       <div className="logo">
-        <a href="#home" aria-label="Home">
+        <a href="#" aria-label="Home" onClick={scrollToTop}>
           <span>Awais</span> <span className="highlight">Tahir</span>
         </a>
       </div>
@@ -23,13 +29,16 @@ const Header = () => {
       {/* Desktop Navigation */}
       <nav className="nav">
         <ul className="nav-links">
-          {["Home", "About", "Experience", "Projects", "Testimonial"].map(
-            (item) => (
-              <li key={item}>
-                <a href={`#${item.toLowerCase()}`}>{item}</a>
-              </li>
-            )
-          )}
+          <li>
+            <a href="#" onClick={scrollToTop}>
+              Home
+            </a>
+          </li>
+          {["About", "Experience", "Projects", "Testimonial"].map((item) => (
+            <li key={item}>
+              <a href={`#${item.toLowerCase()}`}>{item}</a>
+            </li>
+          ))}
         </ul>
       </nav>
 
@@ -50,15 +59,18 @@ const Header = () => {
       {/* Mobile Navigation */}
       <nav className={`mobile-nav ${mobileMenuOpen ? "show" : ""}`}>
         <ul>
-          {["Home", "About", "Experience", "Projects", "Testimonial"].map(
-            (item) => (
-              <li key={item}>
-                <a href={`#${item.toLowerCase()}`} onClick={closeMenu}>
-                  {item}
-                </a>
-              </li>
-            )
-          )}
+          <li>
+            <a href="#" onClick={scrollToTop}>
+              Home
+            </a>
+          </li>
+          {["About", "Experience", "Projects", "Testimonial"].map((item) => (
+            <li key={item}>
+              <a href={`#${item.toLowerCase()}`} onClick={closeMenu}>
+                {item}
+              </a>
+            </li>
+          ))}
         </ul>
       </nav>
     </header>
