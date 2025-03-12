@@ -3,9 +3,6 @@ import "./Hero.css";
 import profileImage from "../assets/awais.png"; // Import profile image
 
 const Hero = () => {
-  const [projectsDone, setProjectsDone] = useState(0);
-  const [happyClients, setHappyClients] = useState(0);
-  const [fineArtworks, setFineArtworks] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -23,46 +20,6 @@ const Hero = () => {
     handleScroll(); // Check immediately if in view
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  useEffect(() => {
-    if (isVisible) {
-      let projects = 0;
-      const projectsInterval = setInterval(() => {
-        if (projects < 650) {
-          projects += 25;
-          setProjectsDone(projects);
-        } else {
-          clearInterval(projectsInterval);
-        }
-      }, 25);
-
-      let clients = 0;
-      const clientsInterval = setInterval(() => {
-        if (clients < 99) {
-          clients += 3;
-          setHappyClients(clients);
-        } else {
-          clearInterval(clientsInterval);
-        }
-      }, 25);
-
-      let artworks = 0;
-      const artworksInterval = setInterval(() => {
-        if (artworks < 240) {
-          artworks += 8;
-          setFineArtworks(artworks);
-        } else {
-          clearInterval(artworksInterval);
-        }
-      }, 25);
-
-      return () => {
-        clearInterval(projectsInterval);
-        clearInterval(clientsInterval);
-        clearInterval(artworksInterval);
-      };
-    }
-  }, [isVisible]);
 
   return (
     <section className="hero">
@@ -88,15 +45,15 @@ const Hero = () => {
         </div>
         <div className="hero-stats">
           <div>
-            <span>{projectsDone}+</span>
+            <span>50+</span>
             <p>Web Projects Delivered</p>
           </div>
           <div>
-            <span>{happyClients}%</span>
-            <p>Happy Clients</p>
+            <span>25+</span>
+            <p>Clients</p>
           </div>
           <div>
-            <span>{fineArtworks}+</span>
+            <span>120+</span>
             <p>Creative Designs</p>
           </div>
         </div>
