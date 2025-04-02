@@ -91,6 +91,27 @@
     height: 14px;
 }
 
+/* Behance Link Styling */
+.behance-link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    background: linear-gradient(90deg, #0077ff, #0055cc);
+    text-decoration: none;
+    border-radius: 8px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.behance-link:hover {
+    background: linear-gradient(90deg, #0055cc, #003399);
+    transform: translateY(-3px);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+}
+
 /* RESPONSIVE DESIGN */
 
 /* Tablet View */
@@ -149,5 +170,10 @@
     .swiper-pagination-bullet-active {
         width: 10px;
         height: 10px;
+    }
+
+    .behance-link {
+        font-size: 14px;
+        padding: 10px 15px;
     }
 }
