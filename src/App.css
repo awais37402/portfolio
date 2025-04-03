@@ -1,57 +1,160 @@
-/* Scroll Arrows */
+/* ===== BASE STYLES ===== */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  scroll-behavior: smooth;
+  background: #f8f9fa;
+  color: white;
+  min-height: 100vh;
+}
+
+/* ===== SCROLL ARROWS (Left Mid Position) ===== */
 .scroll-arrows {
-    position: fixed;
-    left: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    z-index: 998;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  
-  .scroll-arrows.visible {
-    opacity: 1;
+  position: fixed;
+  left: 20px; /* Positioned on left */
+  top: 50%;
+  transform: translateY(-50%); /* Perfect vertical center */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 998;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  /* Prevent pushing content */
+  margin-left: 0;
+  width: 40px;
+}
+
+.scroll-arrows.visible {
+  opacity: 1;
+}
+
+.scroll-arrow {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(123, 66, 246, 0.8);
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  /* Ensure no overflow */
+  margin: 0;
+  padding: 0;
+}
+
+.scroll-arrow:hover {
+  background: #ff8c00;
+  transform: scale(1.1);
+}
+
+/* Remove separate up/down margins since we're stacking vertically */
+.scroll-arrow.up,
+.scroll-arrow.down {
+  margin: 0;
+}
+
+/* ===== WHATSAPP ICON ===== */
+.whatsapp-icon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25d366;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  z-index: 9999;
+  border: none;
+  outline: none;
+}
+
+.whatsapp-icon.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.whatsapp-icon:hover {
+  transform: translateY(-3px) scale(1.05);
+}
+
+/* ===== RESPONSIVE ADJUSTMENTS ===== */
+@media (max-width: 768px) {
+  /* Scroll Arrows */
+  .scroll-arrows {
+    left: 10px;
+    transform: translateY(-50%) scale(0.9);
   }
   
   .scroll-arrow {
+    width: 36px;
+    height: 36px;
+  }
+
+  /* WhatsApp Icon */
+  .whatsapp-icon {
+    width: 45px;
+    height: 45px;
+    font-size: 22px;
+    right: 15px;
+    bottom: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Scroll Arrows */
+  .scroll-arrows {
+    left: 5px;
+    transform: translateY(-50%) scale(0.85);
+  }
+  
+  /* WhatsApp Icon */
+  .whatsapp-icon {
     width: 40px;
     height: 40px;
-    border-radius: 50%;
-    background: rgba(123, 66, 246, 0.8);
-    color: white;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    font-size: 20px;
+    right: 10px;
+    bottom: 10px;
   }
-  
-  .scroll-arrow:hover {
-    background: #ff8c00;
-    transform: scale(1.1);
+}
+
+/* ===== TOUCH DEVICE ADJUSTMENTS ===== */
+@media (hover: none) {
+  .scroll-arrow:hover,
+  .whatsapp-icon:hover {
+    transform: none;
   }
-  
-  .scroll-arrow.up {
-    margin-bottom: 5px;
-  }
-  
-  .scroll-arrow.down {
-    margin-top: 5px;
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .scroll-arrows {
-      left: 10px;
-    }
-    
-    .scroll-arrow {
-      width: 35px;
-      height: 35px;
-    }
-  }
+}
+
+/* ===== EXTRA SAFETY FOR HORIZONTAL SCROLLING ===== */
+* {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+img, video, iframe {
+  max-width: 100%;
+  height: auto;
+}
