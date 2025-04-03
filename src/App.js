@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { FaWhatsapp, FaArrowUp, FaArrowDown } from "react-icons/fa";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -11,14 +12,14 @@ import Testimonial from "./components/Testimonial";
 import Graphics from "./components/Graphics";
 import SplashScreen from "./components/SplashScreen";
 import VideoPortfolio from "./components/VideoPortfolio";
-
-import { FaWhatsapp } from "react-icons/fa";
 import "./styles.css";
 import "./App.css";
 
 function App() {
   const [showSplash, setShowSplash] = useState(true);
   const [showWhatsapp, setShowWhatsapp] = useState(false);
+  const [showScrollArrows, setShowScrollArrows] = useState(false);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
   // Hide splash screen after 3 seconds
   useEffect(() => {
@@ -32,6 +33,7 @@ function App() {
   useEffect(() => {
     const handleScroll = () => {
       setShowWhatsapp(window.scrollY > 300);
+      setShowScrollArrows(window.scrollY > 100);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -43,9 +45,23 @@ function App() {
     window.open("https://wa.me/923213762964", "_blank");
   };
 
-  // Prevent background scrolling when lightbox is open
-  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  // Scroll to top function
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  };
 
+  // Scroll to bottom function
+  const scrollToBottom = () => {
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: "smooth"
+    });
+  };
+
+  // Prevent background scrolling when lightbox is open
   useEffect(() => {
     if (isLightboxOpen) {
       document.body.style.overflow = 'hidden';
@@ -72,7 +88,7 @@ function App() {
           <Contact />
           <Footer />
 
-          {/* WhatsApp Floating Button - hidden when lightbox is open */}
+          {/* WhatsApp Floating Button */}
           {!isLightboxOpen && (
             <button
               className={`whatsapp-icon ${showWhatsapp ? "show" : ""}`}
@@ -81,6 +97,26 @@ function App() {
             >
               <FaWhatsapp />
             </button>
+          )}
+
+          {/* Scroll Arrows */}
+          {!isLightboxOpen && (
+            <div className={`scroll-arrows ${showScrollArrows ? "visible" : ""}`}>
+              <button 
+                className="scroll-arrow up" 
+                onClick={scrollToTop}
+                aria-label="Scroll to top"
+              >
+                <FaArrowUp />
+              </button>
+              <button 
+                className="scroll-arrow down" 
+                onClick={scrollToBottom}
+                aria-label="Scroll to bottom"
+              >
+                <FaArrowDown />
+              </button>
+            </div>
           )}
         </>
       )}
