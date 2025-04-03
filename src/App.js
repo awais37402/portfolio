@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Header from "./components/Header";
-
+import Hero from "./components/Hero";
 import About from "./components/About";
 import Experience from "./components/Experience";
 import Projects from "./components/Projects";
@@ -10,7 +10,7 @@ import Footer from "./components/Footer";
 import Testimonial from "./components/Testimonial";
 import Graphics from "./components/Graphics";
 import SplashScreen from "./components/SplashScreen";
-
+import VideoPortfolio from "./components/VideoPortfolio";
 
 import { FaWhatsapp } from "react-icons/fa";
 import "./styles.css";
@@ -61,11 +61,11 @@ function App() {
       ) : (
         <>
           <Header />
-         
+          <Hero />
           <About />
           <Experience />
           <Projects />
-          
+          <VideoPortfolio onLightboxToggle={setIsLightboxOpen} />
           <Graphics />
           <Skills />
           <Testimonial />
