@@ -1,7 +1,6 @@
-
 import React, { useState, useEffect } from 'react';
 import { FaPlay, FaTimes, FaFilter, FaExpand, FaCompress } from 'react-icons/fa';
-
+import './VideoPortfolio.css';
 
 // Import all videos from assets
 import cosmicVideo from '../assets/cosmic.mp4';
