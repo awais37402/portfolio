@@ -1,9 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Header.css";
 import { FaBars, FaTimes } from "react-icons/fa";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  // Track scroll progress
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const docHeight = document.body.scrollHeight;
+      const totalScroll = docHeight - windowHeight;
+      const progress = (scrollTop / totalScroll) * 100;
+      setScrollProgress(progress);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Toggle mobile menu visibility
   const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
@@ -73,6 +89,12 @@ const Header = () => {
           ))}
         </ul>
       </nav>
+
+      {/* Progress Line */}
+      <div 
+        className="progress-line" 
+        style={{ width: `${scrollProgress}%` }}
+      />
     </header>
   );
 };
