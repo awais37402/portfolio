@@ -10,7 +10,7 @@ import Footer from "./components/Footer";
 import Testimonial from "./components/Testimonial";
 import Graphics from "./components/Graphics";
 import SplashScreen from "./components/SplashScreen";
-
+import VideoPortfolio from "./components/VideoPortfolio";
 
 import { FaWhatsapp } from "react-icons/fa";
 import "./styles.css";
@@ -65,7 +65,7 @@ function App() {
           <About />
           <Experience />
           <Projects />
-        
+          <VideoPortfolio onLightboxToggle={setIsLightboxOpen} />
           <Graphics />
           <Skills />
           <Testimonial />
