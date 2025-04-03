@@ -34,17 +34,17 @@ const Projects = () => {
     },
     {
       id: 4,
-      title: "Fitness Hub - Gym Website",
-      description: "A modern gym website with class scheduling, membership plans, and trainer profiles to help users achieve their fitness goals.",
+      title: "Fitness Hub",
+      description: "Modern gym website with booking system, membership plans, and trainer profiles.",
       features: [
-        "Class schedule with online booking system",
-        "Membership plan comparison and signup",
-        "Trainer profiles with specialties",
-        "Workout tracking and progress visualization",
-        "Nutrition planning section",
-        "Responsive design for all devices"
+        "Online class booking",
+        "Membership management",
+        "Trainer profiles",
+        "Workout tracking",
+        "Nutrition planning",
+        "Mobile-responsive"
       ],
-      technologies: ["React", "Node.js", "MongoDB", "Stripe", "Firebase Auth"],
+      technologies: ["React", "Node.js", "MongoDB", "Stripe"],
       images: [taskapp1, taskapp2],
       githubUrl: "https://github.com/awais37402/jym"
     },
