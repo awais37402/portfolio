@@ -188,15 +188,7 @@ const Footer = () => {
       </motion.div>
 
       {/* Scroll to Top */}
-      <motion.button
-        className={`scroll-to-top ${showScroll ? 'visible' : ''}`}
-        onClick={scrollToTop}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        aria-label="Scroll to top"
-      >
-        <FaArrowUp />
-      </motion.button>
+     
     </footer>
   );
 };
