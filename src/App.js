@@ -8,7 +8,7 @@ import Projects from "./components/Projects";
 import Skills from "./components/Skills";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import Testimonial from "./components/Testimonial";
+import Testimonial from "./components/Testimonials";
 import Graphics from "./components/Graphics";
 import SplashScreen from "./components/SplashScreen";
 import VideoPortfolio from "./components/VideoPortfolio";
