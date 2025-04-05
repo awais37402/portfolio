@@ -5,21 +5,17 @@ import {
   FaEnvelope,
   FaPhoneAlt,
   FaMapMarkerAlt,
- 
+  FaArrowUp
 } from "react-icons/fa";
+import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
-
 import "./Footer.css";
 
 const Footer = () => {
   const [showScroll, setShowScroll] = useState(false);
 
   const checkScrollTop = () => {
-    if (!showScroll && window.pageYOffset > 400) {
-      setShowScroll(true);
-    } else if (showScroll && window.pageYOffset <= 400) {
-      setShowScroll(false);
-    }
+    setShowScroll(window.pageYOffset > 400);
   };
 
   const scrollToTop = () => {
@@ -32,86 +28,175 @@ const Footer = () => {
   useEffect(() => {
     window.addEventListener('scroll', checkScrollTop);
     return () => window.removeEventListener('scroll', checkScrollTop);
-  }, [showScroll]);
+  }, []);
+
+  const socialLinks = [
+    { icon: <FaFacebook />, url: "https://web.facebook.com/awais.tahir.3762", label: "Facebook" },
+    { icon: <FaLinkedin />, url: "https://www.linkedin.com/in/awais-tahir-172299258/", label: "LinkedIn" },
+    { icon: <FaGithub />, url: "https://github.com/awais37402", label: "GitHub" }
+  ];
+
+  const quickLinks = [
+    { text: "Portfolio", url: "#projects" },
+    { text: "About Me", url: "#about" },
+    { text: "Services", url: "#experience" },
+    { text: "Contact", url: "#contact" },
+    { text: "Testimonials", url: "#testimonials" }
+  ];
 
   return (
     <footer className="footer">
       <div className="footer-container">
-        {/* About Section */}
-        <div className="footer-brand">
-          <h2>Awais Tahir</h2>
-          <p>
-            Web Developer & Graphic Designer passionate about crafting digital
-            experiences that inspire and engage.
+        {/* Brand Section */}
+        <motion.div 
+          className="footer-brand"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+        >
+          <motion.h2
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
+            Awais <span className="highlight">Tahir</span>
+          </motion.h2>
+          
+          <p className="brand-tagline">
+            Crafting digital experiences that inspire and engage
           </p>
           
-          {/* Contact Info */}
           <div className="footer-contact-info">
-            <div className="contact-item">
-              <FaEnvelope className="contact-icon" />
+            <motion.div 
+              className="contact-item"
+              whileHover={{ x: 5 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <div className="contact-icon-wrapper">
+                <FaEnvelope className="contact-icon" />
+              </div>
               <span>awaistahir01234@gmail.com</span>
-            </div>
-            <div className="contact-item">
-              <FaPhoneAlt className="contact-icon" />
+            </motion.div>
+            
+            <motion.div 
+              className="contact-item"
+              whileHover={{ x: 5 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <div className="contact-icon-wrapper">
+                <FaPhoneAlt className="contact-icon" />
+              </div>
               <span>+92 321 3762964</span>
-            </div>
-            <div className="contact-item">
-              <FaMapMarkerAlt className="contact-icon" />
+            </motion.div>
+            
+            <motion.div 
+              className="contact-item"
+              whileHover={{ x: 5 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <div className="contact-icon-wrapper">
+                <FaMapMarkerAlt className="contact-icon" />
+              </div>
               <span>Islamabad, Pakistan</span>
-            </div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Quick Links */}
-        <div className="footer-links">
+        <motion.div 
+          className="footer-links"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          viewport={{ once: true }}
+        >
           <h3>Quick Links</h3>
           <ul>
-            <li><a href="#projects">Portfolio</a></li>
-            <li><a href="#about">About Me</a></li>
-            <li><a href="#experience">Services</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="#testimonials">Testimonials</a></li>
-            
+            {quickLinks.map((link, index) => (
+              <motion.li
+                key={index}
+                whileHover={{ x: 5 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <a href={link.url}>{link.text}</a>
+              </motion.li>
+            ))}
           </ul>
-        </div>
+        </motion.div>
 
-        {/* Social Media */}
-        <div className="footer-social">
+        {/* Social & Newsletter */}
+        <motion.div 
+          className="footer-social"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
           <h3>Let's Connect</h3>
           <div className="social-icons">
-            <a href="https://web.facebook.com/awais.tahir.3762" aria-label="Facebook"><FaFacebook /></a>
-            <a href="https://www.linkedin.com/in/awais-tahir-172299258/" aria-label="LinkedIn"><FaLinkedin /></a>
-            <a href="https://github.com/awais37402" aria-label="GitHub"><FaGithub /></a>
+            {socialLinks.map((social, index) => (
+              <motion.a
+                key={index}
+                href={social.url}
+                aria-label={social.label}
+                whileHover={{ y: -5, scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                transition={{ type: "spring", stiffness: 400 }}
+              >
+                {social.icon}
+              </motion.a>
+            ))}
           </div>
           
-          {/* Newsletter Subscription */}
           <div className="newsletter">
-            <h4>Subscribe to Newsletter</h4>
+            <h4>Get Updates</h4>
             <form className="newsletter-form">
-              <input 
+              <motion.input 
                 type="email" 
                 placeholder="Your email address" 
                 required 
+                whileFocus={{ scale: 1.02 }}
               />
-              <button type="submit">Subscribe</button>
+              <motion.button 
+                type="submit"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+              >
+                Subscribe
+              </motion.button>
             </form>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       {/* Footer Bottom */}
-      <div className="footer-bottom">
+      <motion.div 
+        className="footer-bottom"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+        viewport={{ once: true }}
+      >
         <div className="footer-legal">
           <a href="/privacy">Privacy Policy</a>
-          <span> | </span>
-          <a href="/terms">Terms of Service</a>
-          <span> | </span>
+          <span>•</span>
+          <a href="/terms">Terms</a>
+          <span>•</span>
           <a href="/sitemap">Sitemap</a>
         </div>
         <p>© {new Date().getFullYear()} Awais Tahir. All rights reserved.</p>
-      </div>
+      </motion.div>
 
-      
+      {/* Scroll to Top */}
+      <motion.button
+        className={`scroll-to-top ${showScroll ? 'visible' : ''}`}
+        onClick={scrollToTop}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        aria-label="Scroll to top"
+      >
+        <FaArrowUp />
+      </motion.button>
     </footer>
   );
 };

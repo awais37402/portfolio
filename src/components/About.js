@@ -13,7 +13,7 @@ const About = () => {
           setIsInView(true);
         }
       },
-      { root: null, threshold: 0.2 } // Detect visibility from any scroll direction
+      { root: null, threshold: 0.2 }
     );
 
     if (aboutRef.current) {
@@ -30,18 +30,23 @@ const About = () => {
       <div className="about-container">
         {/* About Image */}
         <div className={`about-img ${isInView ? 'slide-in-left' : ''}`}>
-          <img src={awaisImage} alt="Awais" />
+          <div className="img-border-glow">
+            <img src={awaisImage} alt="Awais" />
+          </div>
         </div>
 
         {/* About Text */}
         <div className={`about-text ${isInView ? 'slide-in-right' : ''}`}>
-          <h2>About Me</h2>
+          <div className="section-header">
+            <h2>About <span className="highlight">Me</span></h2>
+          </div>
           <p>
             I am a passionate <span className="highlight">Web Developer</span> and{' '}
             <span className="highlight">Graphic Designer</span> with several years of experience.
             I specialize in creating modern and interactive web experiences, using cutting-edge
             technologies and design principles to deliver visually stunning and user-friendly websites.
           </p>
+         
         </div>
       </div>
     </section>

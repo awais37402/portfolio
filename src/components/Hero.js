@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Hero.css";
-import profileImage from "../assets/awais.png"; // Import profile image
+import profileImage from "../assets/awais.png";
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -17,7 +17,7 @@ const Hero = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Check immediately if in view
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -25,46 +25,57 @@ const Hero = () => {
     <section className="hero">
       {/* Left Content */}
       <div className={`hero-text ${isVisible ? "show-left" : ""}`}>
+        <div className="intro-badge">
+          <span className="badge-text">Full Stack Developer & Designer</span>
+          <div className="badge-glow"></div>
+        </div>
         <h1>
-          Transforming Ideas Into{" "}
-          <span className="gradient-text">Beautiful Websites</span> and{" "}
-          <span className="gradient-text">Engaging Designs</span>
+          Crafting <span className="gradient-text">Digital</span> Experiences
+          <br />
+          That <span className="gradient-text">Inspire</span>
         </h1>
-        <p>
-          Hi, I’m Awais! As a web developer and graphic designer with more than
-          3 years of experience, I'm passionate about creating visually
-          stunning websites and crafting designs that tell your brand’s story.
+        <p className="hero-description">
+          Hi, I'm <span className="name-highlight">Awais</span>! I build immersive web applications and 
+          pixel-perfect designs that drive engagement and business growth. 
+          With over 3 years of experience transforming ideas into reality.
         </p>
         <div className="hero-buttons">
           <a href="#contact" className="btn-gradient">
-            Let's Work Together
+            <span>Let's Collaborate</span>
+            <div className="hover-effect"></div>
           </a>
           <a href="#projects" className="btn-outline">
-            Explore My Work →
+            <span>View Portfolio</span>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
           </a>
         </div>
         <div className="hero-stats">
-          <div>
-            <span>50+</span>
-            <p>Web Projects Delivered</p>
+          <div className="stat-item">
+            <span className="stat-number" data-count="50">25</span>
+            <p className="stat-label">Projects</p>
           </div>
-          <div>
-            <span>25+</span>
-            <p>Clients</p>
+          <div className="stat-item">
+            <span className="stat-number" data-count="25">20</span>
+            <p className="stat-label">Clients</p>
           </div>
-          <div>
-            <span>120+</span>
-            <p>Creative Designs</p>
+          <div className="stat-item">
+            <span className="stat-number" data-count="120">80</span>
+            <p className="stat-label">Designs</p>
           </div>
         </div>
       </div>
 
       {/* Right Image with Icons */}
       <div className={`hero-image ${isVisible ? "show-right" : ""}`}>
-        <img src={profileImage} alt="Profile" className="profile-pic" />
-        <div className="icon">🌐</div> {/* Web Development Icon */}
-        <div className="icon">🎨</div> {/* Design Icon */}
-        <div className="icon">🖥️</div> {/* Technology Icon */}
+        <div className="image-container">
+          <img src={profileImage} alt="Profile" className="profile-pic" />
+          <div className="image-glow"></div>
+        </div>
+        <div className="tech-bubble react">React</div>
+        <div className="tech-bubble node">Node.js</div>
+        <div className="tech-bubble ui">UI/UX</div>
       </div>
     </section>
   );

@@ -1,8 +1,20 @@
 /* About Section */
 .about-section {
-  padding: 80px 20px;
-  text-align: center;
-  color: #333;
+  padding: 100px 20px;
+  background-color: #0f172a;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 20% 50%, rgba(123, 66, 246, 0.15) 0%, transparent 50%);
+  z-index: 0;
 }
 
 /* About Container */
@@ -10,76 +22,122 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 40px;
+  gap: 60px;
   flex-wrap: wrap;
-  overflow: hidden;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 /* About Image Styling */
 .about-img {
-  width: 270px;
-  height: 270px;
+  width: 300px;
+  height: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 50%;
-  padding: 6px;
-  background: linear-gradient(90deg, #7b42f6, #ff8c00);
-  margin-bottom: 20px;
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
   opacity: 0;
   transform: translateX(-100px);
   transition: opacity 1s ease-out, transform 1s ease-out;
 }
 
+.img-border-glow {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  padding: 8px;
+  background: linear-gradient(145deg, #7b42f6, #00f0ff);
+  box-shadow: 0 0 30px rgba(123, 66, 246, 0.4);
+  animation: rotate-gradient 8s linear infinite;
+}
+
 .about-img img {
-  width: 250px;
-  height: 250px;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+@keyframes rotate-gradient {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
 }
 
 /* About Text */
 .about-text {
   flex: 1;
-  max-width: 500px;
+  min-width: 300px;
+  max-width: 600px;
   opacity: 0;
   transform: translateX(100px);
   transition: opacity 1s ease-out, transform 1s ease-out;
 }
 
+.section-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
 .about-text h2 {
-  font-size: 40px;
-  margin-bottom: 20px;
-  color: #ffffff;
-  font-weight: bold;
-  text-transform: uppercase;
-  background: linear-gradient(90deg, #7b42f6, #ff8c00);
-  letter-spacing: 2px;
-  display: inline-block;
-  padding: 10px 30px;
-  border-radius: 20px;
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  font-size: 42px;
+  margin: 0;
+  color: #f8fafc;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.highlight {
+  background: linear-gradient(90deg, #7b42f6, #00f0ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+}
+
+.highlight::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #7b42f6, #00f0ff);
+  border-radius: 3px;
 }
 
 .about-text p {
   font-size: 18px;
   line-height: 1.8;
-  max-width: 800px;
-  margin: 0 auto;
-  color: #555;
+  color: #cbd5e1;
   font-weight: 300;
-  padding: 20px 30px;
-  border-radius: 30px;
-  background-color: #ffffff;
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-  border: 2px solid #7b42f6;
+  padding: 25px;
+  border-radius: 15px;
+  background-color: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(10px);
+  border-left: 2px solid #7b42f6;
+  margin-bottom: 30px;
 }
 
-/* Highlight Text */
-.about-text .highlight {
+/* Tech Stack */
+.tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tech-stack span {
+  font-size: 14px;
+  padding: 6px 15px;
+  border-radius: 20px;
+  background: rgba(123, 66, 246, 0.1);
   color: #7b42f6;
-  font-weight: bold;
+  border: 1px solid rgba(123, 66, 246, 0.3);
 }
 
 /* Animation Activation */
@@ -94,29 +152,63 @@
 }
 
 /* Responsive Layout */
-@media (max-width: 768px) {
-  .about-container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .about-img {
-    width: 220px;
-    height: 220px;
-    padding: 4px;
-  }
-
-  .about-img img {
-    width: 200px;
-    height: 200px;
-  }
-
+@media (max-width: 1024px) {
   .about-text h2 {
     font-size: 36px;
   }
+}
 
+@media (max-width: 768px) {
+  .about-section {
+    padding: 80px 20px;
+  }
+  
+  .about-container {
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  .about-img {
+    width: 220px;
+    height: 220px;
+  }
+  
+  .about-text h2 {
+    font-size: 32px;
+    text-align: center;
+  }
+  
   .about-text p {
     font-size: 16px;
-    max-width: 90%;
+    padding: 20px;
+  }
+  
+  .section-header {
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .tech-stack {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-section {
+    padding: 60px 15px;
+  }
+  
+  .about-text h2 {
+    font-size: 28px;
+  }
+  
+  .about-text p {
+    padding: 15px;
+    font-size: 15px;
+  }
+  
+  .tech-stack span {
+    font-size: 12px;
+    padding: 5px 12px;
   }
 }

@@ -1,179 +1,173 @@
-/* Wrapper for the entire section */
-.graphics-wrapper {
-    text-align: center;
-    width: 100%;
-    padding: 40px 5%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+:root {
+  --primary-bg: #0f172a;
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --accent-color: #7c3aed;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
 }
 
-/* Heading styling */
-.graphics-heading {
-    font-size: 36px;
-    font-weight: 600;
-    color: #ffffff;
-    padding: 12px 35px;
-    background: linear-gradient(90deg, #7b42f6, #ff8c00);
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    display: inline-block;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-transform: uppercase;
+.graphics-section {
+  background: var(--primary-bg);
+  padding: 80px 5%;
+  position: relative;
+  overflow: hidden;
 }
 
-.graphics-heading:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+.graphics-glass-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 30px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 24px;
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 2;
 }
 
-/* Styling the container */
-.graphics-container {
-    width: 100%;
-    max-width: 800px;
-    margin: 30px auto;
-    padding: 25px;
-    background: #ffffff;
-    border-radius: 15px;
-    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.15);
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.graphics-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2.5rem;
 }
 
-/* Slider container */
-.graphics-slider {
-    width: 100%;
+.title-gradient {
+  background: linear-gradient(90deg, #7b42f6, #00f0ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  display: inline-block;
 }
 
-/* Image styling */
-.slide-img {
-    width: 100%;
-    height: auto;
-    max-height: 450px;
-    object-fit: cover;
-    border-radius: 12px;
-    transition: transform 0.3s ease-in-out;
+.title-gradient::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #7b42f6, #00f0ff);
+  border-radius: 4px;
 }
 
-/* Hover effect for images */
-.slide-img:hover {
-    transform: scale(1.05);
+.swiper-container-wrapper {
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
 }
 
-/* Swiper pagination (small dots under the slider) */
-.swiper-pagination {
-    position: relative !important;
-    margin-top: 15px;
+.trendy-swiper {
+  width: 100%;
+  height: 500px;
 }
 
-/* Styling individual dots */
+.slide-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 .swiper-pagination-bullet {
-    width: 12px;
-    height: 12px;
-    background: #ccc;
-    opacity: 0.8;
-    transition: 0.3s;
-    cursor: pointer;
-    border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  background: var(--text-secondary);
+  opacity: 0.6;
+  transition: all 0.3s ease;
 }
 
-/* Bullet hover effect */
-.swiper-pagination-bullet:hover {
-    background: #ff6b6b;
-}
-
-/* Active bullet */
 .swiper-pagination-bullet-active {
-    background: #ff6b6b;
-    width: 14px;
-    height: 14px;
+  background: var(--accent-color);
+  opacity: 1;
+  transform: scale(1.2);
 }
 
-/* Behance Link Styling */
-.behance-link {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 12px 20px;
-    font-size: 16px;
-    font-weight: 600;
-    color: #ffffff;
-    background: linear-gradient(90deg, #0077ff, #0055cc);
-    text-decoration: none;
-    border-radius: 8px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
+.behance-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 32px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background: var(--accent-color);
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 6px -1px rgba(124, 58, 237, 0.2);
+  margin: 0 auto;
+  display: block;
+  width: fit-content;
 }
 
-.behance-link:hover {
-    background: linear-gradient(90deg, #0055cc, #003399);
-    transform: translateY(-3px);
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+.behance-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 15px -3px rgba(124, 58, 237, 0.3);
+  background: #5b21b6;
 }
 
-/* RESPONSIVE DESIGN */
+.behance-button svg {
+  transition: transform 0.4s ease;
+}
 
-/* Tablet View */
+.behance-button:hover svg {
+  transform: translateX(4px);
+}
+
+@media (max-width: 1440px) {
+  .graphics-glass-container {
+    max-width: 900px;
+    padding: 30px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .graphics-glass-container {
+    max-width: 800px;
+    padding: 25px;
+  }
+  .trendy-swiper {
+    height: 400px;
+  }
+}
+
 @media (max-width: 768px) {
-    .graphics-wrapper {
-        padding: 30px 4%;
-    }
-
-    .graphics-heading {
-        font-size: 30px;
-        padding: 10px 25px;
-    }
-
-    .graphics-container {
-        max-width: 90%;
-        padding: 20px;
-    }
-
-    .slide-img {
-        max-height: 350px;
-    }
-
-    .swiper-pagination-bullet {
-        width: 10px;
-        height: 10px;
-    }
-
-    .swiper-pagination-bullet-active {
-        width: 12px;
-        height: 12px;
-    }
+  .graphics-section {
+    padding: 60px 5%;
+  }
+  .trendy-swiper {
+    height: 350px;
+  }
+  .behance-button {
+    padding: 14px 24px;
+  }
 }
 
-/* Mobile View */
 @media (max-width: 480px) {
-    .graphics-heading {
-        font-size: 25px;
-        padding: 8px 20px;
-        border-radius: 10px;
-    }
-
-    .graphics-container {
-        max-width: 95%;
-        padding: 15px;
-    }
-
-    .slide-img {
-        max-height: 250px;
-    }
-
-    .swiper-pagination-bullet {
-        width: 8px;
-        height: 8px;
-    }
-
-    .swiper-pagination-bullet-active {
-        width: 10px;
-        height: 10px;
-    }
-
-    .behance-link {
-        font-size: 14px;
-        padding: 10px 15px;
-    }
+  .graphics-glass-container {
+    padding: 24px;
+    border-radius: 16px;
+  }
+  .trendy-swiper {
+    height: 250px;
+  }
+  .graphics-title {
+    font-size: 1.8rem;
+  }
+  .behance-button {
+    padding: 12px 20px;
+    font-size: 0.9rem;
+  }
 }

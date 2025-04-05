@@ -10,7 +10,7 @@ import aeV3 from '../assets/v3.mp4';
 import aeThumb1 from '../assets/ae-thumb1.png';
 import aeThumb2 from '../assets/ae-thumb2.jpg';
 import aeThumb3 from '../assets/ae-thumb3.jpg';
-import cosmicThumb from '../assets/cosmic-thumb.jpg'; // Make sure you have this thumbnail
+import cosmicThumb from '../assets/cosmic-thumb.jpg';
 
 const VideoPortfolio = () => {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -19,6 +19,7 @@ const VideoPortfolio = () => {
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [loadingStates, setLoadingStates] = useState({});
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth > 1024);
 
   // Video data
   const videos = [
@@ -83,6 +84,7 @@ const VideoPortfolio = () => {
     setIsLightboxOpen(true);
     setIsFullscreen(false);
     setLoadingStates(prev => ({ ...prev, [video.id]: true }));
+    setShowMobileFilters(false);
   };
 
   const closeLightbox = () => {
@@ -103,7 +105,15 @@ const VideoPortfolio = () => {
     setIsFullscreen(!isFullscreen);
   };
 
-  // Close lightbox when clicking outside content
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth > 1024);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (isLightboxOpen && e.target.classList.contains('video-lightbox')) {
@@ -115,7 +125,6 @@ const VideoPortfolio = () => {
     return () => document.removeEventListener('click', handleClickOutside);
   }, [isLightboxOpen]);
 
-  // Close lightbox on Escape key press
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
@@ -134,21 +143,27 @@ const VideoPortfolio = () => {
   return (
     <section className="video-portfolio-section" id="video-portfolio">
       <div className="section-header">
-        <h2>Cinematic Storytelling & Motion Design</h2>
-        <p className="subtitle">Professional video editing and After Effects animations</p>
+        <h2 className="section-title">
+          Cinematic <span className="highlight">Storytelling</span> & Motion Design
+        </h2>
       </div>
 
       {/* Desktop Filters */}
-      <div className="filter-buttons desktop-filters">
-        {filters.map(filter => (
-          <button
-            key={filter.id}
-            className={`filter-btn ${activeFilter === filter.id ? 'active' : ''}`}
-            onClick={() => setActiveFilter(filter.id)}
-          >
-            {filter.label}
-          </button>
-        ))}
+      <div className="filter-controls">
+        <div className="filter-buttons">
+          {filters.map(filter => (
+            <button
+              key={filter.id}
+              className={`filter-btn ${activeFilter === filter.id ? 'active' : ''}`}
+              onClick={() => {
+                setActiveFilter(filter.id);
+                setShowMobileFilters(false);
+              }}
+            >
+              {filter.label}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Mobile Filter Dropdown */}
@@ -198,7 +213,6 @@ const VideoPortfolio = () => {
               {video.type === 'after-effects' && (
                 <span className="ae-badge">After Effects</span>
               )}
-              <span className="video-tag">{video.tags[0]}</span>
             </div>
             <div className="video-info">
               <h3>{video.title}</h3>
@@ -211,8 +225,12 @@ const VideoPortfolio = () => {
 
       {/* Video Lightbox */}
       {isLightboxOpen && selectedVideo && (
-        <div className={`video-lightbox active ${isFullscreen ? 'fullscreen' : ''}`}>
-          <div className="lightbox-content" onClick={e => e.stopPropagation()}>
+        <div className={`video-lightbox ${isFullscreen ? 'fullscreen' : ''}`}>
+          <div 
+            className="lightbox-content" 
+            onClick={e => e.stopPropagation()}
+            style={isDesktop && !isFullscreen ? { marginTop: '5%' } : {}}
+          >
             <button 
               className="close-lightbox"
               onClick={closeLightbox}
@@ -232,14 +250,6 @@ const VideoPortfolio = () => {
                 <div className="video-error">
                   Failed to load video. Please try again later.
                 </div>
-              ) : typeof selectedVideo.videoUrl === 'string' && selectedVideo.videoUrl.includes('youtube') ? (
-                <iframe
-                  src={`${selectedVideo.videoUrl}?autoplay=1`}
-                  title={selectedVideo.title}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  onLoad={() => handleVideoLoaded(selectedVideo.id)}
-                />
               ) : (
                 <video 
                   controls 
@@ -260,7 +270,6 @@ const VideoPortfolio = () => {
                   {selectedVideo.type === 'after-effects' && (
                     <span className="ae-tag">After Effects</span>
                   )}
-                  <span>{selectedVideo.tags.join(' • ')}</span>
                 </div>
               </div>
             )}

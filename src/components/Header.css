@@ -1,189 +1,220 @@
+/* ===== VARIABLES ===== */
+:root {
+  --primary: #7b42f6;
+  --secondary: #00f0ff;
+  --dark: #0f172a;
+  --light: #f8fafc;
+  --gray: #94a3b8;
+}
+
+/* ===== BASE STYLES ===== */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem 5%;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(123, 66, 246, 0.1);
+}
+
+.header.scrolled {
+  padding: 1rem 5%;
+  background: rgba(15, 23, 42, 0.95);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
 /* ===== PROGRESS LINE ===== */
 .progress-line {
   position: absolute;
   bottom: 0;
   left: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #6a11cb, #ff8c00);
-  transition: width 0.1s ease-out;
-  z-index: 1051; /* Above the header */
-}
-
-
-/* ===== HEADER STYLES ===== */
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 30px;
-  background: white;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
-  position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 1050;
-  border-bottom: #6a11cb;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  z-index: 1001;
 }
 
 /* ===== LOGO STYLES ===== */
-.logo a {
-  font-size: 24px;
-  font-weight: bold;
+.logo-link {
+  font-size: 1.5rem;
+  font-weight: 700;
   text-decoration: none;
-  color: #111;
   display: flex;
   align-items: center;
+  gap: 0.25rem;
 }
 
-.highlight {
-  color: orange;
+.logo-name {
+  color: var(--light);
+}
+
+.logo-highlight {
+  color: var(--primary);
+}
+
+.logo-dot {
+  color: var(--secondary);
 }
 
 /* ===== DESKTOP NAVIGATION ===== */
-.nav {
-  display: flex;
-}
-
 .nav-links {
-  list-style: none;
   display: flex;
-  gap: 30px;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.nav-links li a {
+.nav-link {
+  color: var(--gray);
   text-decoration: none;
-  color: #111;
   font-weight: 500;
-  position: relative;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
   transition: color 0.3s ease;
 }
 
-/* Underline Hover Effect */
-.nav-links li a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -4px;
-  width: 0;
-  height: 2px;
-  background: orange;
-  transition: width 0.3s ease;
+.nav-link-number {
+  color: var(--primary);
+  font-size: 0.8rem;
 }
 
-.nav-links li a:hover::after {
-  width: 100%;
+.nav-link:hover {
+  color: var(--light);
 }
 
-.nav-links li a:hover {
-  color: orange;
-}
-
-/* ===== CONTACT BUTTON (Hidden on Mobile) ===== */
+/* ===== CONTACT BUTTON ===== */
 .contact-btn {
-  padding: 10px 20px;
-  background: linear-gradient(135deg, #6a11cb, #ff8c00);
+  position: relative;
+  padding: 0.6rem 1.5rem;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
   color: white;
-  border-radius: 25px;
+  border-radius: 50px;
   text-decoration: none;
-  font-weight: bold;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  font-weight: 600;
+  font-size: 0.9rem;
+  overflow: hidden;
+  border: none;
+  cursor: pointer;
+  z-index: 1;
 }
 
-.contact-btn:hover {
-  transform: scale(1.05);
-  opacity: 0.9;
+.contact-btn span {
+  position: relative;
+  z-index: 2;
 }
 
-/* Hide Contact Button on Mobile */
-@media (max-width: 768px) {
-  .contact-btn {
-    display: none;
-  }
+.contact-btn-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--secondary), var(--primary));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.contact-btn:hover .contact-btn-hover {
+  opacity: 1;
+}
+
+/* ===== MOBILE MENU BUTTON ===== */
+.menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--light);
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 1002;
 }
 
 /* ===== MOBILE NAVIGATION ===== */
-.menu-btn {
-  display: none;
-  font-size: 26px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  z-index: 1100;
-}
-
-/* Mobile Navigation */
 .mobile-nav {
   position: fixed;
-  bottom: -50vh; /* Initially hidden */
+  top: 0;
   left: 0;
   width: 100%;
-  height: 50vh; /* Covers half the screen */
-  border-radius: 20px 20px 0 0;
-  background: rgba(255, 255, 255, 0.9);
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.98);
   backdrop-filter: blur(10px);
-  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-  transition: bottom 0.5s ease-in-out;
+  z-index: 1001;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-/* Mobile Navigation List */
+.mobile-nav-container {
+  width: 100%;
+  max-width: 500px;
+  padding: 2rem;
+}
+
 .mobile-nav ul {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1.5rem;
 }
 
-.mobile-nav ul li a {
+.mobile-nav-link {
+  color: var(--gray);
   text-decoration: none;
-  color: #111;
+  font-size: 1.5rem;
   font-weight: 500;
-  font-size: 20px;
-  padding: 10px 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   transition: color 0.3s ease;
 }
 
-.mobile-nav ul li a:hover {
-  color: #ff8c00;
+.mobile-nav-number {
+  color: var(--primary);
+  font-size: 1rem;
 }
 
-/* Show Mobile Navigation */
-.mobile-nav.show {
-  bottom: 0; /* Slide Up */
-}
-
-/* ===== CLOSE BUTTON ===== */
-.close-btn {
-  position: absolute;
-  top: 15px;
-  right: 20px;
-  font-size: 22px;
-  cursor: pointer;
-  background: transparent;
-  border: none;
-  color: #333;
-  transition: transform 0.3s ease;
-}
-
-.close-btn:hover {
-  transform: rotate(90deg);
-  color: red;
+.mobile-nav-link:hover {
+  color: var(--light);
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
-  .nav {
-    display: none; /* Hide desktop nav */
+  .nav, .contact-btn {
+    display: none;
   }
 
   .menu-btn {
-    display: block; /* Show menu button */
+    display: block;
+  }
+
+  .header {
+    padding: 1rem 5%;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-link {
+    font-size: 1.3rem;
+  }
+
+  .mobile-nav-link {
+    font-size: 1.2rem;
   }
 }

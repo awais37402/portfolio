@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FiGithub, FiX, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import './Projects.css';
 
@@ -88,55 +88,141 @@ const Projects = () => {
     );
   };
 
+  // Background animation effect
+  useEffect(() => {
+    const canvas = document.getElementById('projectCanvas');
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    const particles = [];
+    const particleCount = Math.floor(window.innerWidth / 10);
+    
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 3 + 1,
+        speedX: Math.random() * 1 - 0.5,
+        speedY: Math.random() * 1 - 0.5
+      });
+    }
+    
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Draw connecting lines
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          
+          if (distance < 100) {
+            ctx.strokeStyle = `rgba(100, 255, 218, ${1 - distance/100})`;
+            ctx.lineWidth = 0.5;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+      
+      // Draw particles
+      particles.forEach(particle => {
+        ctx.fillStyle = '#64ffda';
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Move particles
+        particle.x += particle.speedX;
+        particle.y += particle.speedY;
+        
+        // Bounce off edges
+        if (particle.x < 0 || particle.x > canvas.width) particle.speedX *= -1;
+        if (particle.y < 0 || particle.y > canvas.height) particle.speedY *= -1;
+      });
+      
+      requestAnimationFrame(animate);
+    };
+    
+    animate();
+    
+    const handleResize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <section id="projects" className="projects-section">
-      <h2 className="section-title">My Projects</h2>
-      <p className="section-subtitle">Here are some of my recent works</p>
+      {/* Animated Background Canvas */}
+      <canvas id="projectCanvas" className="animated-bg"></canvas>
+      
+      <div className="content-wrapper">
+        <div className="section-header">
+        <h2 className="section-title">
+  Featured <span className="highlight">Projects</span>
+</h2><br></br>
+          
+        </div>
 
-      <div className="projects-grid">
-        {projects.map(project => (
-          <div key={project.id} className="project-card">
-            <div className="project-image-container">
-              <img 
-                src={project.images[0]} 
-                alt={project.title} 
-                className="project-thumbnail"
-              />
-              <button 
-                className="preview-button"
-                onClick={() => openProject(project)}
-              >
-                Quick Preview
-              </button>
-            </div>
-            <div className="project-info">
-              <h3>{project.title}</h3>
-              <p className="project-description">{project.description}</p>
-              <div className="tech-tags">
-                {project.technologies.map((tech, index) => (
-                  <span key={index} className="tech-tag">{tech}</span>
-                ))}
-              </div>
-              <div className="project-links">
-                {project.githubUrl && (
-                  <a 
-                    href={project.githubUrl} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="project-link"
+        <div className="projects-grid">
+          {projects.map(project => (
+            <div key={project.id} className="project-card">
+              <div className="project-image-container">
+                <img 
+                  src={project.images[0]} 
+                  alt={project.title} 
+                  className="project-thumbnail"
+                  loading="lazy"
+                />
+                <div className="project-overlay">
+                  <button 
+                    className="preview-button"
+                    onClick={() => openProject(project)}
                   >
-                    <FiGithub /> View Code
-                  </a>
-                )}
+                    View Project
+                  </button>
+                </div>
+              </div>
+              <div className="project-info">
+                <h3>{project.title}</h3>
+                <p className="project-description">{project.description}</p>
+                <div className="tech-tags">
+                  {project.technologies.map((tech, index) => (
+                    <span key={index} className="tech-tag">{tech}</span>
+                  ))}
+                </div>
+                <div className="project-links">
+                  {project.githubUrl && (
+                    <a 
+                      href={project.githubUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="project-link"
+                    >
+                      <FiGithub /> Code
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
       {/* Project Detail Modal */}
       {selectedProject && (
         <div className="project-modal">
+          <div className="modal-overlay" onClick={closeProject}></div>
           <div className="modal-content">
             <button className="close-modal" onClick={closeProject}>
               <FiX />
@@ -166,15 +252,26 @@ const Projects = () => {
 
             <div className="modal-details">
               <h3>{selectedProject.title}</h3>
-              <p>{selectedProject.description}</p>
+              <p className="modal-description">{selectedProject.description}</p>
               
               <div className="features-section">
                 <h4>Key Features:</h4>
                 <ul>
                   {selectedProject.features.map((feature, index) => (
-                    <li key={index}>{feature}</li>
+                    <li key={index}>
+                      <span className="feature-icon">✓</span> {feature}
+                    </li>
                   ))}
                 </ul>
+              </div>
+
+              <div className="tech-stack">
+                <h4>Tech Stack:</h4>
+                <div className="tech-tags">
+                  {selectedProject.technologies.map((tech, index) => (
+                    <span key={index} className="tech-tag">{tech}</span>
+                  ))}
+                </div>
               </div>
 
               <div className="modal-links">
