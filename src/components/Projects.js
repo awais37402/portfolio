@@ -11,6 +11,12 @@ import taskapp2 from '../assets/taskapp2.png';
 import portfolio1 from '../assets/portfolio1.png';
 import portfolio2 from '../assets/portfolio2.jpg';
 import portfolio3 from '../assets/portfolio3.jpg';
+// Import magnetic treatment device images
+import magnetic1 from '../assets/img1.jpg';
+import magnetic2 from '../assets/img2.png';
+import magnetic3 from '../assets/img3.png';
+import magnetic4 from '../assets/img4.png';
+import magnetic5 from '../assets/img5.png';
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -33,7 +39,23 @@ const Projects = () => {
       githubUrl: "https://github.com/awais37402/ecommerce"
     },
     {
-      id: 4,
+      id: 2,
+      title: "Magnetic Treatment Device",
+      description: "A responsive web application for controlling and monitoring a magnetic treatment device with real-time data visualization.",
+      features: [
+        "Interactive device control panel",
+        "Real-time treatment monitoring",
+        "Patient data management",
+        "Treatment history and reporting",
+        "Responsive design for all devices",
+        "Secure authentication system"
+      ],
+      technologies: ["React", "Chart.js", "WebSockets", "Tailwind CSS", "Firebase"],
+      images: [magnetic1, magnetic2, magnetic3, magnetic4, magnetic5],
+      githubUrl: "https://github.com/awais37402/Barak"
+    },
+    {
+      id: 3,
       title: "Fitness Hub",
       description: "Modern gym website with booking system, membership plans, and trainer profiles.",
       features: [
@@ -49,7 +71,7 @@ const Projects = () => {
       githubUrl: "https://github.com/awais37402/jym"
     },
     {
-      id: 3,
+      id: 4,
       title: "Portfolio Website",
       description: "A responsive portfolio website showcasing my work and skills with smooth animations.",
       features: [
@@ -179,7 +201,7 @@ const Projects = () => {
             <div key={project.id} className="project-card">
               <div className="project-image-container">
                 <img 
-                  src={project.images[0]} 
+                  src={project.images[0] || "/placeholder.svg"} 
                   alt={project.title} 
                   className="project-thumbnail"
                   loading="lazy"
@@ -230,7 +252,7 @@ const Projects = () => {
             
             <div className="modal-image-container">
               <img 
-                src={selectedProject.images[currentImageIndex]} 
+                src={selectedProject.images[currentImageIndex] || "/placeholder.svg"} 
                 alt={`${selectedProject.title} screenshot ${currentImageIndex + 1}`}
                 className="modal-image"
               />
