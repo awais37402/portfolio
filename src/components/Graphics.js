@@ -20,9 +20,22 @@ import img12 from "../assets/awd.png";
 import img13 from "../assets/er.png";
 import img14 from "../assets/sdc.png";
 
-const images = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12, img13, img14];
+// Fisher-Yates Shuffle Algorithm
+const shuffleArray = (array) => {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+};
 
 const Graphics = () => {
+  const shuffledImages = shuffleArray([
+    img1, img2, img3, img4, img5, img6, img7,
+    img8, img9, img10, img11, img12, img13, img14
+  ]);
+
   return (
     <section className="graphics-section">
       <div className="graphics-glass-container">
@@ -45,7 +58,7 @@ const Graphics = () => {
             }}
             className="trendy-swiper"
           >
-            {images.map((img, index) => (
+            {shuffledImages.map((img, index) => (
               <SwiperSlide key={index}>
                 <div className="slide-content">
                   <img 
