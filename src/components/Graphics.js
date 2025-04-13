@@ -15,8 +15,12 @@ import img7 from "../assets/7.png";
 import img8 from "../assets/8.jpg";
 import img9 from "../assets/9.png";
 import img10 from "../assets/10.png";
+import img11 from "../assets/a.png";
+import img12 from "../assets/awd.png";
+import img13 from "../assets/er.png";
+import img14 from "../assets/sdc.png";
 
-const images = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10];
+const images = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12, img13, img14];
 
 const Graphics = () => {
   return (
