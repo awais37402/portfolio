@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FiGithub, FiX, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { FiGithub, FiX, FiChevronLeft, FiChevronRight, FiExternalLink } from 'react-icons/fi';
 import './Projects.css';
 
 // Import all project images
@@ -17,6 +17,12 @@ import magnetic2 from '../assets/img2.png';
 import magnetic3 from '../assets/img3.png';
 import magnetic4 from '../assets/img4.png';
 import magnetic5 from '../assets/img5.png';
+// Import Maximus Gear images
+import maximus1 from '../assets/g1.jpg';
+import maximus2 from '../assets/g2.png';
+import maximus3 from '../assets/g3.png';
+import maximus4 from '../assets/g4.png';
+import maximus5 from '../assets/g5.png';
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -25,6 +31,25 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
+      title: "Maximus Gear",
+      description: "A modern fitness clothing e-commerce platform with product filtering, cart functionality, and responsive design.",
+      features: [
+        "Product catalog with filtering options",
+        "Shopping cart functionality",
+        "Responsive design for all devices",
+        "Product details page with image gallery",
+        "Smooth animations and transitions",
+        "Category-based product organization",
+        "Search functionality",
+        "Responsive navigation"
+      ],
+      technologies: ["React", "React Router", "CSS Modules", "Context API", "Framer Motion"],
+      images: [maximus1, maximus2, maximus3, maximus4, maximus5],
+      githubUrl: "https://github.com/awais37402/Maximus-Gear",
+      liveUrl: "https://maximus-gear.vercel.app/"
+    },
+    {
+      id: 2,
       title: "E-Commerce Platform",
       description: "A full-featured online store with payment integration, product management, and user authentication.",
       features: [
@@ -39,7 +64,7 @@ const Projects = () => {
       githubUrl: "https://github.com/awais37402/ecommerce"
     },
     {
-      id: 2,
+      id: 3,
       title: "Magnetic Treatment Device",
       description: "A responsive web application for controlling and monitoring a magnetic treatment device with real-time data visualization.",
       features: [
@@ -55,7 +80,7 @@ const Projects = () => {
       githubUrl: "https://github.com/awais37402/Barak"
     },
     {
-      id: 3,
+      id: 4,
       title: "Fitness Hub",
       description: "Modern gym website with booking system, membership plans, and trainer profiles.",
       features: [
@@ -71,7 +96,7 @@ const Projects = () => {
       githubUrl: "https://github.com/awais37402/jym"
     },
     {
-      id: 4,
+      id: 5,
       title: "Portfolio Website",
       description: "A responsive portfolio website showcasing my work and skills with smooth animations.",
       features: [
@@ -87,6 +112,7 @@ const Projects = () => {
     }
   ];
 
+  // Handler functions
   const openProject = (project) => {
     setSelectedProject(project);
     setCurrentImageIndex(0);
@@ -190,10 +216,10 @@ const Projects = () => {
       
       <div className="content-wrapper">
         <div className="section-header">
-        <h2 className="section-title">
-  Featured <span className="highlight">Projects</span>
-</h2><br></br>
-          
+          <h2 className="section-title">
+            Featured <span className="highlight">Projects</span>
+          </h2>
+          <br></br>
         </div>
 
         <div className="projects-grid">
@@ -232,6 +258,16 @@ const Projects = () => {
                       className="project-link"
                     >
                       <FiGithub /> Code
+                    </a>
+                  )}
+                  {project.liveUrl && (
+                    <a 
+                      href={project.liveUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="project-link"
+                    >
+                      <FiExternalLink /> Live
                     </a>
                   )}
                 </div>
@@ -305,6 +341,16 @@ const Projects = () => {
                     className="modal-link"
                   >
                     <FiGithub /> View Source Code
+                  </a>
+                )}
+                {selectedProject.liveUrl && (
+                  <a 
+                    href={selectedProject.liveUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="modal-link"
+                  >
+                    <FiExternalLink /> Visit Live Site
                   </a>
                 )}
               </div>
