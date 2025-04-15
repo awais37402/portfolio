@@ -6,21 +6,21 @@ const experiences = [
   {
     title: "Frontend Developer",
     company: "Tech Innovations Inc.",
-    duration: "2021 - Present",
+    duration: "1st jan, 2025",
     description: "Developing responsive web applications using React, Next.js, and modern CSS frameworks. Leading UI/UX improvements that increased user engagement by 40%.",
     icon: <FaLaptopCode className="experience-icon" />,
   },
   {
     title: "UI/UX Designer",
     company: "Creative Digital Agency",
-    duration: "2019 - 2021",
+    duration: "1st jan, 2025",
     description: "Designed intuitive user interfaces for 15+ clients across various industries. Conducted user research and testing to optimize conversion rates.",
     icon: <FaPaintBrush className="experience-icon" />,
   },
   {
     title: "Full Stack Developer",
     company: "Freelance",
-    duration: "2018 - 2019",
+    duration: "1st jan, 2025",
     description: "Built custom web solutions for small businesses using MERN stack. Implemented RESTful APIs and database architectures for optimal performance.",
     icon: <FaServer className="experience-icon" />,
   }
