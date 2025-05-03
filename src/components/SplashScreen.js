@@ -1,45 +1,26 @@
-import React, { useEffect, useState } from "react";
-import "./SplashScreen.css";
+import React from 'react';
+import './SplashScreen.css';
 
-const SplashScreen = ({ onComplete }) => {
-    const message = "Welcome to My Portfolio";
-    const [text, setText] = useState("");
-    const [showCursor, setShowCursor] = useState(true);
-
-    useEffect(() => {
-        let i = 0;
-        const typingSpeed = 100; // Speed of typing effect
-        const displayTime = 3000; // Total display time
-
-        const interval = setInterval(() => {
-            setText(message.slice(0, i + 1));
-            i++;
-            if (i === message.length) {
-                clearInterval(interval);
-                setTimeout(() => setShowCursor(false), 500);
-            }
-        }, typingSpeed);
-
-        const timeout = setTimeout(() => {
-            onComplete();
-        }, displayTime);
-
-        return () => {
-            clearInterval(interval);
-            clearTimeout(timeout);
-        };
-    }, []);
-
-    return (
-        <section className="splash-screen">
-            <div className="text-wrapper">
-                <p className="text">
-                    <span>{text}</span>
-                    {showCursor && <span className="cursor"></span>}
-                </p>
-            </div>
-        </section>
-    );
+const SplashScreen = () => {
+  return (
+    <div className="splash-container">
+      <div className="splash-content">
+        <h1 className="splash-title">
+          <span className="letter">A</span>
+          <span className="letter">w</span>
+          <span className="letter">a</span>
+          <span className="letter">i</span>
+          <span className="letter">s</span>
+          <span className="letter space"></span>
+          <span className="letter">T</span>
+          <span className="letter">a</span>
+          <span className="letter">h</span>
+          <span className="letter">i</span>
+          <span className="letter">r</span>
+        </h1>
+      </div>
+    </div>
+  );
 };
 
 export default SplashScreen;

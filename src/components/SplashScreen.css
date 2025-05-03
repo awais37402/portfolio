@@ -1,6 +1,8 @@
-/* Fullscreen Splash Screen */
-.splash-screen {
+/* Base Styles */
+.splash-container {
     position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100vh;
     background: linear-gradient(135deg, #0f172a, #4f46e5);
@@ -8,63 +10,107 @@
     justify-content: center;
     align-items: center;
     z-index: 9999;
-    font-family: 'Poppins', sans-serif;
-    transition: opacity 0.8s ease-in-out;
-}
-
-/* Text Wrapper */
-.text-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    overflow: hidden;
+  }
+  
+  .splash-content {
     text-align: center;
-}
-
-/* Typing Text */
-.text {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #f8fafc;
-    text-transform: uppercase;
-    opacity: 0;
-    animation: fadeInText 1.5s ease-in-out forwards;
-}
-
-/* Blinking Cursor */
-.cursor {
+  }
+  
+  .splash-title {
     display: inline-block;
-    width: 12px;
-    height: 24px;
-    background: #f8fafc;
-    margin-left: 5px;
-    animation: blink 0.6s infinite ease-in-out;
-}
-
-/* Keyframe Animations */
-@keyframes blink {
-    50% { opacity: 0; }
-}
-
-@keyframes fadeInText {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Fade-out Effect */
-.splash-screen.fade-out {
-    opacity: 0;
-    pointer-events: none;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .text {
-        font-size: 2rem;
+    font-size: clamp(3rem, 10vw, 6rem);
+    font-weight: 700;
+    color: transparent;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .letter {
+    display: inline-block;
+    background: linear-gradient(90deg, #ffffff, #e0e7ff, #a5b4fc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    position: relative;
+  }
+  
+  /* Individual Letter Animations */
+  .letter:nth-child(1) { animation: bounce 1s ease 0.1s both, glow 2s ease infinite; }
+  .letter:nth-child(2) { animation: bounce 1s ease 0.2s both, glow 2s ease 0.2s infinite; }
+  .letter:nth-child(3) { animation: bounce 1s ease 0.3s both, glow 2s ease 0.4s infinite; }
+  .letter:nth-child(4) { animation: bounce 1s ease 0.4s both, glow 2s ease 0.6s infinite; }
+  .letter:nth-child(5) { animation: bounce 1s ease 0.5s both, glow 2s ease 0.8s infinite; }
+  .letter:nth-child(7) { animation: bounce 1s ease 0.6s both, glow 2s ease 1s infinite; }
+  .letter:nth-child(8) { animation: bounce 1s ease 0.7s both, glow 2s ease 1.2s infinite; }
+  .letter:nth-child(9) { animation: bounce 1s ease 0.8s both, glow 2s ease 1.4s infinite; }
+  .letter:nth-child(10) { animation: bounce 1s ease 0.9s both, glow 2s ease 1.6s infinite; }
+  .letter:nth-child(11) { animation: bounce 1s ease 1s both, glow 2s ease 1.8s infinite; }
+  
+  .space {
+    width: 1rem;
+  }
+  
+  /* Animations */
+  @keyframes bounce {
+    0% {
+      transform: translateY(0) scaleY(1);
+      opacity: 0;
     }
-}
-
-@media (max-width: 480px) {
-    .text {
-        font-size: 1.5rem;
+    40% {
+      transform: translateY(-30px) scaleY(1.1);
+      opacity: 1;
     }
-}
+    60% {
+      transform: translateY(15px) scaleY(0.9);
+    }
+    80% {
+      transform: translateY(-5px) scaleY(1.02);
+    }
+    100% {
+      transform: translateY(0) scaleY(1);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes glow {
+    0%, 100% {
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    }
+    50% {
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    }
+  }
+  
+  /* Background Animation */
+  .splash-container::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    animation: rotate 20s linear infinite;
+    z-index: -1;
+  }
+  
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .splash-title {
+      font-size: clamp(2.5rem, 12vw, 4rem);
+    }
+    
+    .letter {
+      animation-duration: 0.8s !important;
+    }
+    
+    .space {
+      width: 0.5rem;
+    }
+  }
