@@ -1,6 +1,7 @@
-/* VideoPortfolio.css - Professional Version */
+/* VideoPortfolio.css - Professional Small Lightbox Version */
 
 :root {
+  /* Color Scheme */
   --primary-bg: #0f172a;
   --card-bg: #1e293b;
   --accent-color: #7c3aed;
@@ -8,7 +9,10 @@
   --text-secondary: #94a3b8;
   --ae-color: #00a2ff;
   --border-radius: 12px;
-  --transition: all 0.3s ease;
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --box-shadow-hover: 0 10px 20px rgba(0, 0, 0, 0.2);
+  --lightbox-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
 }
 
 /* Base Reset */
@@ -22,27 +26,24 @@
 /* Main Section */
 .video-portfolio-section {
   background: var(--primary-bg);
-  padding: 3rem 1.5rem;
+  padding: 4rem 1.5rem;
   color: var(--text-primary);
 }
 
 /* Section Header */
 .section-header {
   text-align: center;
-  margin-bottom: 1.5rem; /* Reduced from 3rem */
+  margin-bottom: 2.5rem;
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .section-title {
-  font-size: clamp(2rem, 5vw, 2.5rem);
+  font-size: clamp(2rem, 5vw, 2.75rem);
   font-weight: 700;
-  margin-bottom: 0.5rem; /* Reduced from 1rem */
-  line-height: 1.2;
-  color: #f8fafc;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
+  margin-bottom: 0.75rem;
+  line-height: 1.25;
 }
 
 .highlight {
@@ -50,6 +51,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   position: relative;
+  padding: 0 0.25rem;
 }
 
 .highlight::after {
@@ -63,47 +65,11 @@
   border-radius: 3px;
 }
 
-/* Filter Controls */
-.filter-controls {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 1.5rem; /* Reduced from 2.5rem */
-}
-
-.filter-buttons {
-  display: flex;
-  gap: 0.75rem;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 0.5rem;
-  border-radius: var(--border-radius);
-}
-
-.filter-btn {
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: calc(var(--border-radius) - 4px);
-  background: transparent;
-  color: var(--text-primary);
-  font-weight: 500;
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-.filter-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.filter-btn.active {
-  background: var(--accent-color);
-  color: white;
-  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
-}
-
 /* Video Grid */
 .video-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.5rem;
+  gap: 1.75rem;
   margin: 0 auto;
   max-width: 1200px;
 }
@@ -114,18 +80,20 @@
   border-radius: var(--border-radius);
   overflow: hidden;
   transition: var(--transition);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--box-shadow);
   cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .video-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--box-shadow-hover);
+  border-color: rgba(124, 58, 237, 0.3);
 }
 
 .thumbnail-container {
   position: relative;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  padding-bottom: 56.25%;
   overflow: hidden;
 }
 
@@ -152,7 +120,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.4);
   opacity: 0;
   transition: var(--transition);
 }
@@ -164,30 +132,38 @@
 .play-icon {
   color: white;
   font-size: 2.5rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
 
 /* Video Info */
 .video-info {
-  padding: 1.25rem;
+  padding: 1.5rem;
 }
 
 .video-info h3 {
   font-size: 1.25rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
   font-weight: 600;
 }
 
 .video-description {
   color: var(--text-secondary);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   line-height: 1.5;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .video-year {
   display: inline-block;
   font-size: 0.85rem;
   color: var(--text-secondary);
+  background: rgba(148, 163, 184, 0.1);
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
 }
 
 /* Badges */
@@ -197,13 +173,14 @@
   left: 1rem;
   background: var(--ae-color);
   color: white;
-  padding: 0.25rem 0.75rem;
+  padding: 0.35rem 0.85rem;
   border-radius: 4px;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 162, 255, 0.3);
 }
 
-/* Lightbox */
+/* Lightbox Styles - Compact Version */
 .video-lightbox {
   position: fixed;
   top: 0;
@@ -215,16 +192,23 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: 1.5rem;
+  opacity: 0;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
 }
 
 .lightbox-content {
   width: 100%;
-  max-width: 1000px;
+  max-width: 700px; /* Smaller max-width for compact look */
   background: var(--card-bg);
   border-radius: var(--border-radius);
   overflow: hidden;
   position: relative;
+  box-shadow: var(--lightbox-shadow);
 }
 
 .close-lightbox {
@@ -247,6 +231,7 @@
 
 .close-lightbox:hover {
   background: rgba(255, 255, 255, 0.2);
+  transform: rotate(90deg);
 }
 
 .video-player-container {
@@ -269,14 +254,15 @@
 }
 
 .lightbox-info h3 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
+  font-size: 1.35rem;
+  margin-bottom: 0.75rem;
 }
 
 .lightbox-info p {
   color: var(--text-secondary);
   margin-bottom: 1rem;
-  line-height: 1.6;
+  font-size: 0.95rem;
+  line-height: 1.5;
 }
 
 .video-meta {
@@ -286,27 +272,12 @@
   font-size: 0.9rem;
 }
 
-/* Fullscreen Toggle */
-.fullscreen-toggle {
-  position: absolute;
-  bottom: 1rem;
-  right: 1rem;
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  cursor: pointer;
-  z-index: 10;
-  transition: var(--transition);
-}
-
-.fullscreen-toggle:hover {
-  background: rgba(255, 255, 255, 0.2);
+.ae-tag {
+  background: rgba(0, 162, 255, 0.1);
+  color: var(--ae-color);
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-weight: 500;
 }
 
 /* Loading States */
@@ -339,106 +310,37 @@
   to { transform: rotate(360deg); }
 }
 
-/* Mobile Filters */
-.mobile-filter-container {
-  display: none;
-  position: relative;
-  margin-bottom: 1rem; /* Reduced from 1.5rem */
-}
-
-.mobile-filter-toggle {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.25rem;
-  background: var(--card-bg);
-  border: none;
-  border-radius: var(--border-radius);
-  color: var(--text-primary);
-  cursor: pointer;
-  margin: 0 auto;
-}
-
-.mobile-filter-dropdown {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  background: var(--card-bg);
-  border-radius: var(--border-radius);
-  overflow: hidden;
-  margin-top: 0.5rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  z-index: 10;
-}
-
-.mobile-filter-btn {
-  display: block;
-  width: 100%;
-  padding: 0.75rem 1.25rem;
-  text-align: left;
-  background: transparent;
-  border: none;
-  color: var(--text-primary);
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-.mobile-filter-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.mobile-filter-btn.active {
-  background: var(--accent-color);
-}
-
-/* Responsive Adjustments - Fixed for full heading on mobile */
-@media (max-width: 1024px) {
-  .video-grid {
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .video-portfolio-section {
+    padding: 3rem 1.25rem;
   }
   
   .lightbox-content {
-    margin-top: 0 !important;
-  }
-}
-
-@media (max-width: 768px) {
-  .section-title {
-    font-size: 2rem;
-    white-space: normal;
-    overflow: visible;
-    text-overflow: clip;
+    max-width: 95%;
   }
   
-  .filter-buttons {
-    display: none;
+  .lightbox-info {
+    padding: 1.25rem;
   }
   
-  .mobile-filter-container {
-    display: block;
-  }
-  
-  .video-lightbox {
-    padding: 1rem;
+  .lightbox-info h3 {
+    font-size: 1.25rem;
   }
 }
 
 @media (max-width: 480px) {
   .video-portfolio-section {
-    padding: 2rem 1rem; /* Reduced from 3rem */
-  }
-  
-  .section-title {
-    font-size: 1.8rem;
-    white-space: normal;
-    overflow: visible;
-    text-overflow: clip;
-    word-break: normal;
+    padding: 2.5rem 1rem;
   }
   
   .video-grid {
     grid-template-columns: 1fr;
+  }
+  
+  .lightbox-content {
+    max-width: 100%;
+    border-radius: 0;
   }
   
   .lightbox-info {
@@ -446,6 +348,11 @@
   }
   
   .lightbox-info h3 {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
+  }
+  
+  .close-lightbox {
+    width: 2.25rem;
+    height: 2.25rem;
   }
 }
