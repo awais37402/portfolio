@@ -23,6 +23,9 @@ import maximus2 from '../assets/g2.png';
 import maximus3 from '../assets/g3.png';
 import maximus4 from '../assets/g4.png';
 import maximus5 from '../assets/g5.png';
+import b1 from '../assets/b1.png';
+import b2 from '../assets/b2.png';
+import b3 from '../assets/b3.png';
 
 import './Projects.css';
 
@@ -42,6 +45,26 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
+      title: "Burgur Restaurant",
+      category: "e-commerce",
+      description: "A modern restaurant website with online ordering functionality, menu display, and reservation system.",
+      features: [
+        "Interactive menu with category filtering",
+        "Responsive design optimized for all devices",
+        "Smooth animations and transitions",
+        "Online ordering system",
+        "Table reservation functionality",
+        "Contact form with validation",
+        "Performance optimized (95+ Lighthouse score)",
+        "SEO-optimized pages"
+      ],
+      technologies: ["React", "CSS Modules", "Framer Motion", "React Icons", "Formik"],
+      images: [b1, b2, b3],
+      githubUrl: "https://github.com/awais37402/burgur",
+      liveUrl: "https://burgur-ruddy.vercel.app/"
+    },
+    {
+      id: 2,
       title: "Maximus Gear",
       category: "e-commerce",
       description: "A premium e-commerce platform for fitness apparel featuring advanced product filtering, seamless checkout, and immersive product showcases.",
@@ -61,7 +84,7 @@ const Projects = () => {
       liveUrl: "https://maximus-gear.vercel.app/"
     },
     {
-      id: 2,
+      id: 3,
       title: "E-Commerce Platform",
       category: "e-commerce",
       description: "Enterprise-grade online store with complete payment integration, inventory management, and multi-tier user roles.",
@@ -80,7 +103,7 @@ const Projects = () => {
       githubUrl: "https://github.com/awais37402/ecommerce"
     },
     {
-      id: 3,
+      id: 4,
       title: "Magnetic Treatment System",
       category: "health-tech",
       description: "Medical-grade web application for controlling therapeutic devices with real-time biometric monitoring and reporting.",
@@ -99,7 +122,7 @@ const Projects = () => {
       githubUrl: "https://github.com/awais37402/Barak"
     },
     {
-      id: 4,
+      id: 5,
       title: "Fitness Hub Pro",
       category: "health-tech",
       description: "Comprehensive gym management platform with class scheduling, member tracking, and integrated payment processing.",
@@ -118,7 +141,7 @@ const Projects = () => {
       githubUrl: "https://github.com/awais37402/jym"
     },
     {
-      id: 5,
+      id: 6,
       title: "Portfolio Platform",
       category: "portfolio",
       description: "Award-winning portfolio design featuring cinematic scroll animations and dark/light mode theming.",
